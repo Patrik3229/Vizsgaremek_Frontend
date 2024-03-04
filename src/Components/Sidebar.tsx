@@ -1,5 +1,7 @@
+import '../css/Sidebar.css'
+
 export function Sidebar() {
-    return <div className="wrapper d-flex align-items-stretch">
+    return <div className="h-100 d-flex align-items-stretch">
     <nav id="sidebar" className="p-4">
       <div>
         <h2>

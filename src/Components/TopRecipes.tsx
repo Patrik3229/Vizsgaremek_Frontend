@@ -12,34 +12,24 @@ export function TopRecipes() {
         <ul className="list-unstyled">
           <li>
             <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-2"><span className="fa fa-home mr-3" /></div>
-                <div className="col-10">Home</div>
-              </div>
+              <div>Rice with roasted chicken</div>
             </a>
           </li>
           <li>
+            <li>
             <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-2"><span className="fa fa-gear mr-3" /></div>
-                <div className="col-10">Profile</div>
-              </div>
+              <div>Rice with roasted chicken</div>
+            </a>
+          </li>
+          </li>
+          <li>
+          <a href="#" className="noUnderline">
+              <div>Rice with roasted chicken</div>
             </a>
           </li>
           <li>
-            <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-2"><span className="fa fa-users mr-3" /></div>
-                <div className="col-10">Users</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-2"><span className="fa fa-info-circle mr-3" /></div>
-                <div className="col-10">About Us</div>
-              </div>
+          <a href="#" className="noUnderline">
+              <div>Rice with roasted chicken</div>
             </a>
           </li>
         </ul>

@@ -6,7 +6,7 @@ export function Sidebar() {
       <div>
         <h2>
           <a href="index.html" className="logo noUnderline">
-            Vizsgaremek xD
+            Vizsgaremek
           </a>
         </h2>
         <ul className="list-unstyled">

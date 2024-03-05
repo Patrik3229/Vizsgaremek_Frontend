@@ -1,0 +1,18 @@
+* {
+    color: white;
+}
+
+.dropdown-menu{
+    background-color: #2a2a2a;
+}
+
+.dropdown-item:hover{
+    background-color: #2b2b2b;
+    color: white;
+}
+
+#allergensList{
+    li{
+        margin-left: 10px;
+    }
+}

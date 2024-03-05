@@ -1,10 +1,3 @@
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-
 form {
     --rad: .7rem;
     --dur: .3s;
@@ -16,11 +9,11 @@ form {
     background-color: #494ca2;
     border: 2px solid black;
     border-radius: 5px;
-    margin: 20px 20px 20px 20px;
+    margin-bottom: 50px;
 }
 
-input,
-button {
+input[type="search"],
+#searchButton {
     height: 40px;
     font-family: var(--font-fam);
     border: 0;
@@ -38,7 +31,7 @@ input[type="search"] {
     position: relative;
 }
 
-button {
+#searchButton {
     display: none;
     /*prevent being able to tab to it*/
     position: absolute;
@@ -55,7 +48,7 @@ button {
 input:not(:placeholder-shown) {
     width: calc(100% - var(--btn-width));
 
-    +button {
+    +#searchButton {
         display: block;
     }
 }
@@ -76,12 +69,27 @@ input:hover {
     outline: none;
 }
 
-label {
-    position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0;
-    border: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
+.dropdown-menu{
+    background-color: #2a2a2a;
+}
+
+.dropdown-item:hover{
+    background-color: #2b2b2b;
+    color: white;
+}
+
+#allergensList{
+    li{
+        margin-left: 10px;
+        color: white
+    }
+}
+
+#allergensButton{
+    margin-top: 3px;
+}
+
+.decreasedpadding{
+    padding-left: 5px;
+    padding-right: 5px;
 }

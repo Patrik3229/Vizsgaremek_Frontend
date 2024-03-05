@@ -1,3 +1,4 @@
+import { MainPage } from './Components/MainPage';
 import { Search } from './Components/Search';
 import { Sidebar } from './Components/Sidebar';
 import { TopRecipes } from './Components/TopRecipes';
@@ -10,8 +11,9 @@ function App() {
           <div className="col-2" style={{ height: '100vh' }}>
             <Sidebar />
           </div>
-          <div className="col-8">
+          <div className="col-8" id='search' style={{padding: '20px 50px 50px 50px'}}>
             <Search />
+            <MainPage />
           </div>
           <div className="col-2">
             <TopRecipes />

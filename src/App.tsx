@@ -1,5 +1,6 @@
 import { Search } from './Components/Search';
 import { Sidebar } from './Components/Sidebar';
+import { TopRecipes } from './Components/TopRecipes';
 function App() {
 
   return (
@@ -11,6 +12,9 @@ function App() {
           </div>
           <div className="col-8">
             <Search />
+          </div>
+          <div className="col-2">
+            <TopRecipes />
           </div>
         </div>
       </div>

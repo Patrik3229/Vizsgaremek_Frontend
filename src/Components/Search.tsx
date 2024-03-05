@@ -1,4 +1,4 @@
-import '../css/Search.css'
+import '../css/Search.scoped.css'
 
 export function Search(){
     function searchLogic(){

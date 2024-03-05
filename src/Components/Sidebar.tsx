@@ -1,4 +1,4 @@
-import '../css/Sidebar.css'
+import '../css/Sidebar.scoped.css'
 
 export function Sidebar() {
     return <div className="h-100 d-flex align-items-stretch">
@@ -6,7 +6,7 @@ export function Sidebar() {
       <div>
         <h2>
           <a href="index.html" className="logo noUnderline">
-            Website name
+            Vizsgaremek xD
           </a>
         </h2>
         <ul className="list-unstyled">

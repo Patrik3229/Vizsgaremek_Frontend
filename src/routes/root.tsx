@@ -3,6 +3,7 @@ import { MainPage } from "../Components/MainPage";
 import { Search } from "../Components/Search";
 import { Sidebar } from "../Components/Sidebar";
 import { TopRecipes } from "../Components/TopRecipes";
+import '../css/Root.scoped.css'
 
 export default function Root() {
     return (

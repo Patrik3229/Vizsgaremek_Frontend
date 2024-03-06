@@ -18,16 +18,19 @@ a:hover {
     text-decoration: none;
 }
 
+.form-control {
+    border: 1px solid #292d8d;
+}
+
 .form-control:focus {
     color: #000;
     background-color: #fff;
-    border: 2px solid #292d8d;
-    outline: 0;
+    border: 1px solid white;
     box-shadow: none;
 }
 
 label {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     font-weight: bold;
 }
 

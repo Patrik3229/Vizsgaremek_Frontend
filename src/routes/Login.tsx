@@ -25,8 +25,8 @@ export default function Login() {
                         <label className="d-flex flex-row align-items-center" htmlFor="password">Password</label>
                         <input type="password" className="form-control" id="password" name="password" required/>
                     </div>
-                    <div className="form-group mt-4 mb-4">
-                        <div className="custom-control custom-checkbox">
+                    <div className="mt-4 mb-1">
+                        <div>
                             <input
                                 type="checkbox"
                                 className="custom-control-input"
@@ -34,7 +34,7 @@ export default function Login() {
                                 name="remember-me"
                                 data-parsley-multiple="remember-me"
                             />
-                            <label className="custom-control-label" htmlFor="remember-me">
+                            <label htmlFor="remember-me">
                                 Remember me
                             </label>
                         </div>

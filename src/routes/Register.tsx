@@ -7,23 +7,23 @@ export default function register() {
                 <form action="/register" method="post">
                     <div className="form-group required">
                         <label htmlFor="username">E-mail Address</label>
-                        <input type="text" className="form-control text-lowercase" id="username" name="username" required/>
+                        <input type="text" className="form-control text-lowercase" id="username" name="username" required />
                     </div>
                     <div className="form-group required">
                         <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control text-lowercase" id="username" name="username" required/>
+                        <input type="text" className="form-control text-lowercase" id="username" name="username" required />
                     </div>
                     <div className="form-group required">
                         <label className="d-flex flex-row align-items-center" htmlFor="password">Password</label>
-                        <input type="password" className="form-control" id="password" name="password" required/>
+                        <input type="password" className="form-control" id="password" name="password" required />
                     </div>
                     <div className="form-group required">
                         <label className="d-flex flex-row align-items-center" htmlFor="password">Password Again</label>
-                        <input type="password" className="form-control" id="password" name="password" required/>
+                        <input type="password" className="form-control" id="password" name="password" required />
                     </div>
                     <div className="mt-4 mb-1">
                         <div>
-                            <input type="checkbox" id="remember-me" name="remember-me"/>
+                            <input type="checkbox" id="remember-me" name="remember-me" />
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
                     </div>

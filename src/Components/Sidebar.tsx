@@ -47,14 +47,13 @@ export function Sidebar() {
       <div>
         <div className="footer">
           <div className="my-2">
-            <button className="btn btn-primary navbarbutton">Create a new recipe</button>
+            <a href="/"><button className="btn btn-primary navbarbutton">Create a new recipe</button></a>
           </div>
           <div className="my-2">
             <a href="/login"><button className="btn btn-primary navbarbutton">Login</button></a>
-            
           </div>
           <div className="my-2">
-            <button className="btn btn-primary navbarbutton">Register</button>
+          <a href="/register"><button className="btn btn-primary navbarbutton">Register</button></a>
           </div>
         </div>
       </div>

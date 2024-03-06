@@ -1,0 +1,52 @@
+* {
+    color: white;
+}
+
+#registerPage {
+    background-color: rgb(25, 25, 25);
+    font-family: 'Muli', sans-serif;
+}
+
+h1 {
+    color: #fff;
+    padding-bottom: 2rem;
+    font-weight: bold;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-control {
+    border: 1px solid #292d8d;
+}
+
+.form-control:focus {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid white;
+    box-shadow: none;
+}
+
+label {
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+}
+
+.form-group{
+    margin-bottom: 1rem;
+}
+
+#remember-me{
+    margin-right: 5px;
+}
+
+#registerCard {
+    background-color: #292d8d;
+}
+
+#footer {
+    display: flex;
+    justify-content: space-between;
+}

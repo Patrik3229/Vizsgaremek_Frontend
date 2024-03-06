@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import '../css/Sidebar.scoped.css'
-import { Guest, LoggedIn } from './auth'
+import { Guest, LoggedIn, NeedsRole } from './auth'
 import { ApiContext } from '../api'
 
 export function Sidebar() {
@@ -24,22 +24,26 @@ export function Sidebar() {
               </div>
             </a>
           </li>
-          <li>
-            <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-2"><span className="fa fa-gear mr-3" /></div>
-                <div className="col-10">Profile</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-2"><span className="fa fa-users mr-3" /></div>
-                <div className="col-10">Users</div>
-              </div>
-            </a>
-          </li>
+          <LoggedIn>
+            <li>
+              <a href="#" className="noUnderline">
+                <div className="row">
+                  <div className="col-2"><span className="fa fa-gear mr-3" /></div>
+                  <div className="col-10">Profile</div>
+                </div>
+              </a>
+            </li>
+          </LoggedIn>
+          <NeedsRole role='manager'>
+            <li>
+              <a href="#" className="noUnderline">
+                <div className="row">
+                  <div className="col-2"><span className="fa fa-users mr-3" /></div>
+                  <div className="col-10">Users</div>
+                </div>
+              </a>
+            </li>
+          </NeedsRole>
           <li>
             <a href="#" className="noUnderline">
               <div className="row">
@@ -52,9 +56,7 @@ export function Sidebar() {
       </div>
       <div>
         <div className="footer">
-          <div className="my-2">
-            <a href="/"><button className="btn btn-primary navbarbutton">Create a new recipe</button></a>
-          </div>
+          
           <Guest>
             <div className="my-2">
               <a href="/login"><button className="btn btn-primary navbarbutton">Login</button></a>
@@ -64,7 +66,12 @@ export function Sidebar() {
             </div>
           </Guest>
           <LoggedIn>
-            <p>You are logged in. <button onClick={api.logout}>Log out</button></p>
+          <div className="my-2">
+            <a href="/"><button className="btn btn-primary navbarbutton">Create a new recipe</button></a>
+          </div>
+          <div className="my-2">
+            <button className="btn btn-danger navbarbutton" onClick={api.logout}>Log out</button>
+          </div>
           </LoggedIn>
         </div>
       </div>

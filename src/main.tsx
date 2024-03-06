@@ -1,4 +1,3 @@
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,6 +9,7 @@ import {
 import Root from "./routes/root";
 import Login from './routes/Login';
 import Register from './routes/Register';
+import { ApiProvider } from './api';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +28,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ApiProvider>
+      <RouterProvider router={router} />
+    </ApiProvider>
   </React.StrictMode>,
 )

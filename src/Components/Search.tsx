@@ -90,6 +90,6 @@ export function Search() {
                 </div>
             </form>
         </div>
-        <p>{searchError}</p>
+        {/*<p>{searchError}</p>*/}
     </>
 }

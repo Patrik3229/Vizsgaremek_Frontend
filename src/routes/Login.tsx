@@ -1,25 +1,29 @@
 import { FormEvent, useContext, useState } from 'react';
 import '../css/Login.scoped.css'
 import { ApiContext } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
 
     const api = useContext(ApiContext);
 
     async function login(e: FormEvent) {
         e.preventDefault();
 
-        api.login(email, password).then(() => {
+        await api.login(email, password).then(() => {
             setLoginError('');
             setEmail('');
             setPassword('');
+            navigate('/');
         }).catch((e: Error) => {
             setLoginError(e.message);
         })
+        console.log("thislogin");
     }
 
     return <div className="row h-100 w-100" id="loginPage">

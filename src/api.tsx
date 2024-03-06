@@ -58,31 +58,44 @@ export function ApiProvider({ children }: Props) {
             setUser(null);
         }
     }, [token])
+    console.log("asd");
 
     const apiObj = {
         currentUser: user,
         error,
 
         login: async (email: string, password: string) => {
+            console.log("Attempting to log in", email);
             const loginData = {
                 email, password,
             }
-    
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify(loginData),
-            });
-            if (!response.ok) {
-                const errorObj = await response.json();
-                throw new Error(errorObj.message);
+
+            try {
+                const response = await fetch(`http://localhost:3000/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(loginData),
+                });
+
+                console.log("Received response", response);
+
+                if (!response.ok) {
+                    const errorObj = await response.json();
+                    console.log("Login error", errorObj);
+                    throw new Error(errorObj.message);
+                }
+                const tokenObj = await response.json();
+                console.log("Login successful", tokenObj);
+                setToken(tokenObj.token);
+                localStorage.setItem('token', tokenObj.token);
+            } catch (error) {
+                console.error("Login failed", error);
             }
-            const tokenObj = await response.json();
-            setToken(tokenObj.token);
-            localStorage.setItem('token', tokenObj.token);
+
+
         },
         logout: () => {
             setToken('');

@@ -50,7 +50,8 @@ export function Sidebar() {
             <button className="btn btn-primary navbarbutton">Create a new recipe</button>
           </div>
           <div className="my-2">
-            <button className="btn btn-primary navbarbutton">Login</button>
+            <a href="/login"><button className="btn btn-primary navbarbutton">Login</button></a>
+            
           </div>
           <div className="my-2">
             <button className="btn btn-primary navbarbutton">Register</button>

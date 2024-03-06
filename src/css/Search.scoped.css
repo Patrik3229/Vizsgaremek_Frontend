@@ -7,12 +7,12 @@ form {
 #searchBox {
     --rad: .7rem;
     --dur: .3s;
-    --color-brand: #494ca2;
+    --color-brand: #292d8d;
     --font-fam: 'Lato', sans-serif;
     --btn-width: 6rem;
     --bez: cubic-bezier(0, 0, 0.5, 1.49);
     position: relative;
-    background-color: #494ca2;
+    background-color: #292d8d;
     border: 2px solid black;
     border-radius: 5px;
     margin-bottom: 50px;
@@ -45,7 +45,7 @@ input[type="search"] {
     right: 0;
     width: var(--btn-width);
     font-weight: bold;
-    background-color: #494ca2;
+    background-color: #292d8d;
     color: #fff;
     border-radius: 3px;
     cursor: pointer;

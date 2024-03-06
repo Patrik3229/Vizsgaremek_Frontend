@@ -1,0 +1,49 @@
+* {
+    color: white;
+}
+
+#loginPage {
+    background-color: rgb(25, 25, 25);
+    font-family: 'Muli', sans-serif;
+}
+
+h1 {
+    color: #fff;
+    padding-bottom: 2rem;
+    font-weight: bold;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-control:focus {
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #292d8d;
+    outline: 0;
+    box-shadow: none;
+}
+
+label {
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.form-group{
+    margin-bottom: 1rem;
+}
+
+#remember-me{
+    margin-right: 5px;
+}
+
+#loginCard {
+    background-color: #292d8d;
+}
+
+#footer {
+    display: flex;
+    justify-content: space-between;
+}

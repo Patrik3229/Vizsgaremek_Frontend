@@ -3,17 +3,43 @@ import '../css/Search.scoped.css'
 
 export function Search() {
 
-    const [searchText, SetSearchText] = useState('');
-    const [searchError, setSearchError] = useState('');
+    const [searchText, setSearchText] = useState<string>('');
+    const [searchError, setSearchError] = useState<string>('');
+    const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
+
+    const allergens = [
+        { id: 1, name: 'Gluten' },
+        { id: 2, name: 'Crustaceans' },
+        { id: 3, name: 'Eggs' },
+        { id: 4, name: 'Fish' },
+        { id: 5, name: 'Peanuts' },
+        { id: 6, name: 'Soybeans' },
+        { id: 7, name: 'Milk' },
+        { id: 8, name: 'Nuts' },
+        { id: 9, name: 'Celery' },
+        { id: 10, name: 'Mustard' },
+        { id: 11, name: 'Sesame seeds' },
+        { id: 12, name: 'Sulphur dioxide' },
+        { id: 13, name: 'Lupin' },
+        { id: 14, name: 'Molluscs' },
+    ];
+
+    const toggleAllergen = (id: number) => {
+        const newSelectedAllergens = selectedAllergens.includes(id)
+            ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
+            : [...selectedAllergens, id]; // Add id
+        setSelectedAllergens(newSelectedAllergens);
+    };
 
     async function searchLogic(e: FormEvent) {
         e.preventDefault();
 
         const searchData = {
             searchText,
+            selectedAllergens
         }
 
-        const response = await fetch(`http://localhost:3000/search`, {
+        const response = await fetch(`http://localhost:3000/recipes/searchContent`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -31,9 +57,9 @@ export function Search() {
 
     return <>
         <div className="row">
-            <form onSubmit={searchLogic} role="search" id='search' className='d-flex w-100'>
+            <form onSubmit={searchLogic} role="search" className='d-flex w-100'>
             <div className="col-10" id='searchBox'>
-                    <input id="search" type="search" placeholder="Search..." onChange={e => SetSearchText(e.currentTarget.value)} required />
+                    <input type="search" placeholder="Search..." onChange={e => setSearchText(e.currentTarget.value)} required />
                     <button type="submit" id='searchButton'>Go</button>
                 </div>
                 <div className="col-2">
@@ -48,77 +74,18 @@ export function Search() {
                             Intolerances
                         </button>
                         <ul className="dropdown-menu" id='allergensList'>
-                            <li>
-                                <label htmlFor='gluten'>
-                                    <input type="checkbox" name="" id="gluten" /> Gluten
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='crustaceans'>
-                                    <input type="checkbox" name="" id="crustaceans" /> Crustaceans
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='eggs'>
-                                    <input type="checkbox" name="" id="eggs" /> Eggs
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='fish'>
-                                    <input type="checkbox" name="" id="fish" /> Fish
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='peanuts'>
-                                    <input type="checkbox" name="" id="peanuts" /> Peanuts
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='soybeans'>
-                                    <input type="checkbox" name="" id="soybeans" /> Soybeans
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='milk'>
-                                    <input type="checkbox" name="" id="milk" /> Milk
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='nuts'>
-                                    <input type="checkbox" name="" id="nuts" /> Nuts
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='celery'>
-                                    <input type="checkbox" name="" id="celery" /> Celery
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='mustard'>
-                                    <input type="checkbox" name="" id="mustard" /> Mustard
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='sesame_seeds'>
-                                    <input type="checkbox" name="" id="sesame_seeds" /> Sesame seeds
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='sulphur_dioxide'>
-                                    <input type="checkbox" name="" id="sulphur_dioxide" /> Sulphur dioxide
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='lupin'>
-                                    <input type="checkbox" name="" id="lupin" /> Lupin
-                                </label>
-                            </li>
-                            <li>
-                                <label htmlFor='molluscs'>
-                                    <input type="checkbox" name="" id="molluscs" /> Molluscs
-                                </label>
-                            </li>
-                        </ul>
+                                {allergens.map(allergen => (
+                                    <li key={allergen.id}>
+                                        <label htmlFor={`allergen-${allergen.id}`}>
+                                            <input
+                                                type="checkbox"
+                                                id={`allergen-${allergen.id}`}
+                                                onChange={() => toggleAllergen(allergen.id)}
+                                            /> {allergen.name}
+                                        </label>
+                                    </li>
+                                ))}
+                            </ul>
                     </div>
                 </div>
             </form>

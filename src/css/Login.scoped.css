@@ -20,10 +20,10 @@ a:hover {
 
 .form-control {
     border: 1px solid #292d8d;
+    color: #000;
 }
 
 .form-control:focus {
-    color: #000;
     background-color: #fff;
     border: 1px solid white;
     box-shadow: none;

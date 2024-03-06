@@ -1,11 +1,12 @@
-import { MainPage } from './Components/MainPage';
-import { Search } from './Components/Search';
-import { Sidebar } from './Components/Sidebar';
-import { TopRecipes } from './Components/TopRecipes';
-function App() {
 
-  return (
-    <>
+import { MainPage } from "../Components/MainPage";
+import { Search } from "../Components/Search";
+import { Sidebar } from "../Components/Sidebar";
+import { TopRecipes } from "../Components/TopRecipes";
+
+export default function Root() {
+    return (
+      <>
       <div className="container-fluid" style={{ height: '100vh' }}>
         <div className="row" style={{ height: '100vh' }}>
           <div className="col-2" style={{ height: '100vh' }}>
@@ -21,7 +22,5 @@ function App() {
         </div>
       </div>
     </>
-  )
-}
-
-export default App
+    );
+  }

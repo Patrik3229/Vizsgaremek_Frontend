@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { User } from "./User";
+import { useNavigate } from "react-router-dom";
 
 export const ApiContext = createContext({
     error: '',
@@ -19,8 +20,9 @@ interface Props {
 
 export function ApiProvider({ children }: Props) {
     const [token, setToken] = useState('');
-    const [user, setUser] = useState(null as User | null)
-    const [error, setError] = useState('')
+    const [user, setUser] = useState(null as User | null);
+    const [error, setError] = useState('');
+    
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -58,7 +60,6 @@ export function ApiProvider({ children }: Props) {
             setUser(null);
         }
     }, [token])
-    console.log("asd");
 
     const apiObj = {
         currentUser: user,
@@ -91,10 +92,11 @@ export function ApiProvider({ children }: Props) {
                 console.log("Login successful", tokenObj);
                 setToken(tokenObj.token);
                 localStorage.setItem('token', tokenObj.token);
+                return tokenObj;
             } catch (error) {
-                console.error("Login failed", error);
+                console.error("Login failed HERE", error);
+                throw error;
             }
-
 
         },
         logout: () => {

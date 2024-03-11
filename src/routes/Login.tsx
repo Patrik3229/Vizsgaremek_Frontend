@@ -8,9 +8,10 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
-    const navigate = useNavigate();
+    
 
     const api = useContext(ApiContext);
+    const navigate = useNavigate();
 
     async function login(e: FormEvent) {
         e.preventDefault();
@@ -20,6 +21,7 @@ export default function Login() {
             setEmail('');
             setPassword('');
             navigate('/');
+            console.log("Navigated");
         }).catch((e: Error) => {
             setLoginError(e.message);
         })
@@ -58,11 +60,11 @@ export default function Login() {
                         <span>Not a member? </span>
                         <a href="/signup">Register now</a>
                     </div>
-                    {loginError && <p className="text-danger">{loginError}</p>}
                     <div>
                         <a href="/">Go back</a>
                     </div>
                 </p>
+                {loginError && <p className="text-danger text-center">{loginError}</p>}
             </div>
         </div>
     </div>

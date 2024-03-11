@@ -4,7 +4,7 @@ import '../css/Search.scoped.css'
 export function Search() {
 
     const [searchText, setSearchText] = useState<string>('');
-    const [searchError, setSearchError] = useState<string>('');
+    //const [searchError, setSearchError] = useState<string>('');
     const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
 
     const allergens = [
@@ -49,8 +49,8 @@ export function Search() {
         });
 
         if (!response.ok) {
-            const errorObj = await response.json();
-            setSearchError(errorObj.message);
+            //const errorObj = await response.json();
+            //setSearchError(errorObj.message);
             return;
         }
     }

@@ -10,6 +10,7 @@ import Root from "./routes/root";
 import Login from './routes/Login';
 import Register from './routes/Register';
 import { ApiProvider } from './api';
+import { Profile } from './Components/Profile';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />
   }
 ]);
 

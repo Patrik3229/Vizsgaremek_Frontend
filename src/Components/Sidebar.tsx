@@ -5,7 +5,7 @@ import { ApiContext } from '../api'
 
 export function Sidebar() {
 
-    const api = useContext(ApiContext)
+    const api = useContext(ApiContext);
     
     return <div className="h-100 d-flex align-items-stretch">
     <nav id="sidebar" className="p-4">

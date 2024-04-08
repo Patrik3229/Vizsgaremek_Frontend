@@ -67,7 +67,7 @@ export function Sidebar() {
           </Guest>
           <LoggedIn>
           <div className="my-2">
-            <a href="/"><button className="btn btn-primary navbarbutton">Create a new recipe</button></a>
+            <a href="/CreateRecipe"><button className="btn btn-primary navbarbutton">Create a new recipe</button></a>
           </div>
           <div className="my-2">
             <button className="btn btn-danger navbarbutton" onClick={api.logout}>Log out</button>

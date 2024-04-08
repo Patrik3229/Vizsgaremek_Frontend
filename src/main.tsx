@@ -11,6 +11,7 @@ import Login from './routes/Login';
 import Register from './routes/Register';
 import { ApiProvider } from './api';
 import { Profile } from './Components/Profile';
+import CreateRecipe from './routes/CreateRecipe';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,12 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />
+  },
+  {
+    path: "/createrecipe",
+    element: <CreateRecipe />
   }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

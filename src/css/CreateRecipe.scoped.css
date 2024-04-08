@@ -8,7 +8,38 @@
     }
 }
 
-#page {
+#mainpage {
     background-color: rgb(25, 25, 25);
     color: white;
+}
+
+#card {
+    background-color: #292d8d;
+}
+
+.form-control {
+    border: 1px solid #292d8d;
+    color: #000;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    border: 1px solid white;
+    box-shadow: none;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-group{
+    margin-bottom: 1.5rem;
+}
+
+#loginCard {
+    background-color: #292d8d;
+}
+
+.mb {
+    margin-bottom: 0.2rem;
 }

@@ -1,25 +1,54 @@
 import { useNavigate } from 'react-router-dom';
 import '../css/CreateRecipe.scoped.css'
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
+import { ApiContext } from '../api';
 
 export default function CreateRecipe() {
+
+    const { token } = useContext(ApiContext);
 
     const [postError, setPostError] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
     const [preptime, setPreptime] = useState('');
+    const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
     const navigate = useNavigate();
     
 
     async function post(e: FormEvent) {
         e.preventDefault();
 
+        const allergens = [
+            { id: 1, name: 'Gluten' },
+            { id: 2, name: 'Crustaceans' },
+            { id: 3, name: 'Eggs' },
+            { id: 4, name: 'Fish' },
+            { id: 5, name: 'Peanuts' },
+            { id: 6, name: 'Soybeans' },
+            { id: 7, name: 'Milk' },
+            { id: 8, name: 'Nuts' },
+            { id: 9, name: 'Celery' },
+            { id: 10, name: 'Mustard' },
+            { id: 11, name: 'Sesame seeds' },
+            { id: 12, name: 'Sulphur dioxide' },
+            { id: 13, name: 'Lupin' },
+            { id: 14, name: 'Molluscs' },
+        ];
+
+        const toggleAllergen = (id: number) => {
+            const newSelectedAllergens = selectedAllergens.includes(id)
+                ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
+                : [...selectedAllergens, id]; // Add id
+            setSelectedAllergens(newSelectedAllergens);
+        };
+
         const data = {
             title,
             description,
             content,
-            preptime
+            preptime: Number(preptime),
+            allergens: selectedAllergens
         }
 
         const response = await fetch(`http://localhost:3000/recipes/post`, {
@@ -27,6 +56,7 @@ export default function CreateRecipe() {
             headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify(data),
         });

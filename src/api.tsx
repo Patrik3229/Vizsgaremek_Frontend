@@ -6,12 +6,14 @@ export const ApiContext = createContext({
     error: '',
     login: async (email: string, password: string) => { },
     logout: () => { },
+    token: '',
+    currentUser: null as (User | null),
+    getToken: () => ''
     /*
     register: async (email: string, password: string) => {},
     listAllUsers: async () => ([] as User[]),
     deleteUser: async(id: int) => {},
     */
-    currentUser: null as (User | null)
 });
 
 interface Props {
@@ -64,6 +66,8 @@ export function ApiProvider({ children }: Props) {
     const apiObj = {
         currentUser: user,
         error,
+        token,
+        getToken: () => token,
 
         login: async (email: string, password: string) => {
             console.log("Attempting to log in", email);

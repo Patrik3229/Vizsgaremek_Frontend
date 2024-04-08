@@ -40,7 +40,7 @@ export function Search() {
         }
 
         const response = await fetch(`http://localhost:3000/recipes/searchContent`, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json',

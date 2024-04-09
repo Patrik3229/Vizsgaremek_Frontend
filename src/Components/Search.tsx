@@ -74,18 +74,18 @@ export function Search() {
                             Intolerances
                         </button>
                         <ul className="dropdown-menu" id='allergensList'>
-                                {allergens.map(allergen => (
-                                    <li key={allergen.id}>
-                                        <label htmlFor={`allergen-${allergen.id}`}>
-                                            <input
-                                                type="checkbox"
-                                                id={`allergen-${allergen.id}`}
-                                                onChange={() => toggleAllergen(allergen.id)}
-                                            /> {allergen.name}
-                                        </label>
-                                    </li>
-                                ))}
-                            </ul>
+                            {allergens.map(allergen => (
+                                <li key={allergen.id}>
+                                    <label htmlFor={`allergen-${allergen.id}`}>
+                                        <input
+                                            type="checkbox"
+                                            id={`allergen-${allergen.id}`}
+                                            onChange={() => toggleAllergen(allergen.id)}
+                                        /> {allergen.name}
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </form>

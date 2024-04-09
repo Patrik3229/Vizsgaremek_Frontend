@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { User } from "./User";
-import { useNavigate } from "react-router-dom";
 
 export const ApiContext = createContext({
     error: '',
@@ -63,10 +62,18 @@ export function ApiProvider({ children }: Props) {
         }
     }, [token])
 
+
+    const logout = () => {
+        setToken('');
+        localStorage.removeItem('token');
+        return true;  // Indicating that logout has been successfully executed
+    };
+
     const apiObj = {
         currentUser: user,
         error,
         token,
+        logout,
         getToken: () => token,
 
         login: async (email: string, password: string) => {
@@ -103,10 +110,7 @@ export function ApiProvider({ children }: Props) {
             }
 
         },
-        logout: () => {
-            setToken('');
-            localStorage.removeItem('token');
-        }
+        
     };
 
     return <ApiContext.Provider value={apiObj}>

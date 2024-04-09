@@ -14,34 +14,33 @@ export default function CreateRecipe() {
     const [preptime, setPreptime] = useState('');
     const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
     const navigate = useNavigate();
-    
+
+    const allergens = [
+        { id: 1, name: 'Gluten' },
+        { id: 2, name: 'Crustaceans' },
+        { id: 3, name: 'Eggs' },
+        { id: 4, name: 'Fish' },
+        { id: 5, name: 'Peanuts' },
+        { id: 6, name: 'Soybeans' },
+        { id: 7, name: 'Milk' },
+        { id: 8, name: 'Nuts' },
+        { id: 9, name: 'Celery' },
+        { id: 10, name: 'Mustard' },
+        { id: 11, name: 'Sesame seeds' },
+        { id: 12, name: 'Sulphur dioxide' },
+        { id: 13, name: 'Lupin' },
+        { id: 14, name: 'Molluscs' },
+    ];
+
+    const toggleAllergen = (id: number) => {
+        const newSelectedAllergens = selectedAllergens.includes(id)
+            ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
+            : [...selectedAllergens, id]; // Add id
+        setSelectedAllergens(newSelectedAllergens);
+    };
 
     async function post(e: FormEvent) {
         e.preventDefault();
-
-        const allergens = [
-            { id: 1, name: 'Gluten' },
-            { id: 2, name: 'Crustaceans' },
-            { id: 3, name: 'Eggs' },
-            { id: 4, name: 'Fish' },
-            { id: 5, name: 'Peanuts' },
-            { id: 6, name: 'Soybeans' },
-            { id: 7, name: 'Milk' },
-            { id: 8, name: 'Nuts' },
-            { id: 9, name: 'Celery' },
-            { id: 10, name: 'Mustard' },
-            { id: 11, name: 'Sesame seeds' },
-            { id: 12, name: 'Sulphur dioxide' },
-            { id: 13, name: 'Lupin' },
-            { id: 14, name: 'Molluscs' },
-        ];
-
-        const toggleAllergen = (id: number) => {
-            const newSelectedAllergens = selectedAllergens.includes(id)
-                ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
-                : [...selectedAllergens, id]; // Add id
-            setSelectedAllergens(newSelectedAllergens);
-        };
 
         const data = {
             title,
@@ -93,8 +92,24 @@ export default function CreateRecipe() {
                         <label htmlFor="preptime" className='mb'>Prepatation time (in minutes)</label>
                         <input type="number" className="form-control" id="preptime" name="preptime" required onChange={e => setPreptime(e.currentTarget.value)} />
                     </div>
+                    <div className=" w-100 mb-5" id='allergensButton'>
+                    <label htmlFor="title" className='mb'>Allergens</label>
+                        <ul className="w-100 grid-container" id='allergensList' style={{listStyleType: 'none', padding: '0'}}>
+                            {allergens.map(allergen => (
+                                <li key={allergen.id}>
+                                    <label htmlFor={`allergen-${allergen.id}`}>
+                                        <input
+                                            type="checkbox"
+                                            id={`allergen-${allergen.id}`}
+                                            onChange={() => toggleAllergen(allergen.id)}
+                                        />&nbsp;{allergen.name}
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                     <div>
-                        <button className="btn btn-primary w-100" type="submit">
+                        <button className="btn btn-primary w-100 fw-bold" type="submit">
                             Post Recipe
                         </button>
                     </div>

@@ -5,11 +5,9 @@ export function MainPage() {
 
     const [successMessage, setSuccessMessage] = useState('');
     useEffect(() => {
-        // Check if there's a success message
         const message = localStorage.getItem('recipeAdded');
         if (message) {
             setSuccessMessage(message);
-            // Clear the message from localStorage
             localStorage.removeItem('recipeAdded');
         }
     }, []);

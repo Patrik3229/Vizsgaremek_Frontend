@@ -65,7 +65,8 @@ export default function CreateRecipe() {
             setPostError(errorObj.message);
             return;
         }
-
+        
+        localStorage.setItem('recipeAdded', 'Recipe successfully added!');
         navigate('/');
     }
 

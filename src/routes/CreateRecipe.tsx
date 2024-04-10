@@ -15,7 +15,6 @@ export default function CreateRecipe() {
     const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
     const navigate = useNavigate();
     
-
     async function post(e: FormEvent) {
         e.preventDefault();
 

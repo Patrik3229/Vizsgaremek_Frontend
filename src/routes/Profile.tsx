@@ -19,9 +19,6 @@ export default function Profile() {
     
     const navigate = useNavigate();
 
-    console.log(currentUser?.id)
-    console.log(userProfile?.id);
-
     useEffect(() => {
         setLoading(true);
         getUserById(Number(id))
@@ -50,6 +47,9 @@ export default function Profile() {
         return <div>No profile found</div>;
     }
 
+    const isOwnProfile = currentUser?.id === userProfile.id;
+    console.log(isOwnProfile);
+
     return <>
         <div className="container-fluid" style={{ height: '100vh' }} id="mainpage">
             <div className="row" style={{ height: '100vh' }}>
@@ -59,9 +59,13 @@ export default function Profile() {
                 <div className="col-8" style={{ padding: '20px 50px 50px 50px' }}>
                     <h1>User profile: {userProfile.name}</h1>
                     <h4 style={{ marginBottom: '20px' }}>Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
-                    <NeedsRole role='manager'>
-                        <button className="btn btn-primary w-100">Edit User</button>
-                    </NeedsRole>
+                    {isOwnProfile ? (
+                        <button className="btn btn-primary w-100">Edit My Profile</button>
+                    ) : (
+                        <NeedsRole role='manager'>
+                            <button className="btn btn-primary w-100">Edit User</button>
+                        </NeedsRole>
+                    )}
                     <h4 style={{ marginTop: '50px' }}>Posted recipes:</h4>
                     <div className="card w-100" style={{ width: "18rem" }}>
                         <div className="card-body">
@@ -69,7 +73,7 @@ export default function Profile() {
                                 <h5 className="card-title">title</h5>
                                 <h5 className="card-title">preptime</h5>
                             </div>
-                            <h6 className="card-subtitle mb-2 text-body-secondary">description</h6>
+                            <h6 className="card-subtitle mb-2">description</h6>
                             <div className="spbw">
                                 <span>Allergens:</span>
                                 <span className="fa fa-solid fa-star"></span>

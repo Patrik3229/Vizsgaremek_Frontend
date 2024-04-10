@@ -14,9 +14,6 @@ export default function CreateRecipe() {
     const [preptime, setPreptime] = useState('');
     const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
     const navigate = useNavigate();
-<<<<<<< HEAD
-    
-=======
 
     const allergens = [
         { id: 1, name: 'Gluten' },
@@ -42,7 +39,6 @@ export default function CreateRecipe() {
         setSelectedAllergens(newSelectedAllergens);
     };
 
->>>>>>> 9de60e45c0cae5b151672fc331dd87728e012264
     async function post(e: FormEvent) {
         e.preventDefault();
 

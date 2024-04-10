@@ -3,11 +3,11 @@ import { User } from "./User";
 
 export const ApiContext = createContext({
     error: '',
-    login: async (email: string, password: string) => { },
+    login: async (_email: string, _password: string) => { },
     logout: () => { },
     token: '',
     currentUser: null as (User | null),
-    getToken: () => ''
+    getToken: () => '' as string
     /*
     register: async (email: string, password: string) => {},
     listAllUsers: async () => ([] as User[]),

@@ -58,7 +58,7 @@ export function Search() {
     return <>
         <div className="row">
             <form onSubmit={searchLogic} role="search" className='d-flex w-100'>
-            <div className="col-10" id='searchBox'>
+                <div className="col-10" id='searchBox'>
                     <input type="search" placeholder="Search..." onChange={e => setSearchText(e.currentTarget.value)} required />
                     <button type="submit" id='searchButton'>Go</button>
                 </div>
@@ -74,18 +74,18 @@ export function Search() {
                             Intolerances
                         </button>
                         <ul className="dropdown-menu" id='allergensList'>
-                                {allergens.map(allergen => (
-                                    <li key={allergen.id}>
-                                        <label htmlFor={`allergen-${allergen.id}`}>
-                                            <input
-                                                type="checkbox"
-                                                id={`allergen-${allergen.id}`}
-                                                onChange={() => toggleAllergen(allergen.id)}
-                                            /> {allergen.name}
-                                        </label>
-                                    </li>
-                                ))}
-                            </ul>
+                            {allergens.map(allergen => (
+                                <li key={allergen.id}>
+                                    <label htmlFor={`allergen-${allergen.id}`}>
+                                        <input
+                                            type="checkbox"
+                                            id={`allergen-${allergen.id}`}
+                                            onChange={() => toggleAllergen(allergen.id)}
+                                        /> {allergen.name}
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </form>

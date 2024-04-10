@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import '../css/Sidebar.scoped.css'
 import { Guest, LoggedIn, NeedsRole } from './auth'
 import { ApiContext } from '../api'
+import { Logout } from './Logout';
 
 export function Sidebar() {
 
@@ -56,7 +57,6 @@ export function Sidebar() {
       </div>
       <div>
         <div className="footer">
-          
           <Guest>
             <div className="my-2">
               <a href="/login"><button className="btn btn-primary navbarbutton">Login</button></a>
@@ -69,9 +69,7 @@ export function Sidebar() {
           <div className="my-2">
             <a href="/CreateRecipe"><button className="btn btn-primary navbarbutton">Create a new recipe</button></a>
           </div>
-          <div className="my-2">
-            <button className="btn btn-danger navbarbutton" onClick={api.logout}>Log out</button>
-          </div>
+          <Logout />
           </LoggedIn>
         </div>
       </div>

@@ -10,8 +10,8 @@ import Root from "./routes/root";
 import Login from './routes/Login';
 import Register from './routes/Register';
 import { ApiProvider } from './api';
-import { Profile } from './Components/Profile';
 import CreateRecipe from './routes/CreateRecipe';
+import Profile from './routes/Profile';
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,6 @@ const router = createBrowserRouter([
     path: "/createrecipe",
     element: <CreateRecipe />
   }
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

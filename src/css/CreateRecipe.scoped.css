@@ -1,11 +1,5 @@
-.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
+.row {
     --bs-gutter-x: 0;
-
-    .row {
-        --bs-gutter-x: 0;
-    }
 }
 
 #mainpage {
@@ -30,6 +24,12 @@
 
 label {
     font-weight: bold;
+    font-size: large;
+}
+
+li label {
+    font-size: medium;
+    font-weight: normal;
 }
 
 .form-group{
@@ -42,4 +42,10 @@ label {
 
 .mb {
     margin-bottom: 0.2rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+    grid-gap: 5px; /* Spacing between columns */
 }

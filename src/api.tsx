@@ -7,12 +7,8 @@ export const ApiContext = createContext({
     logout: () => { },
     token: '',
     currentUser: null as (User | null),
-    getToken: () => '' as string
-    /*
-    register: async (email: string, password: string) => {},
-    listAllUsers: async () => ([] as User[]),
-    deleteUser: async(id: int) => {},
-    */
+    getToken: () => '' as string,
+    getUserById: async (_id: number) => { },
 });
 
 interface Props {
@@ -20,9 +16,9 @@ interface Props {
 }
 
 export function ApiProvider({ children }: Props) {
-    const [token, setToken] = useState('');
-    const [user, setUser] = useState(null as User | null);
-    const [error, setError] = useState('');
+    const [token, setToken] = useState<string>('');
+    const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+    const [error, setError] = useState<string>('');
     
 
     useEffect(() => {
@@ -33,7 +29,8 @@ export function ApiProvider({ children }: Props) {
     }, []);
 
     useEffect(() => {
-        async function loadUserData() {
+
+        async function loadLoggedInUserData() {
             const response = await fetch(`http://localhost:3000/users/me`, {
                 method: 'GET',
                 headers: {
@@ -52,29 +49,47 @@ export function ApiProvider({ children }: Props) {
                 return;
             }
             const userData = await response.json() as User;
-            setUser(userData);
+            setLoggedInUser(userData);
         }
 
         if (token) {
-            loadUserData();
+            loadLoggedInUserData();
         } else {
-            setUser(null);
+            setLoggedInUser(null);
         }
-    }, [token])
 
+    }, [token]);
+
+    async function getUserById(id: number) {
+        try {
+            const response = await fetch(`http://localhost:3000/users/find${id}`, {
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch user data');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching user by ID:", error);
+            throw error;  // Or handle the error as needed
+        }
+    };
 
     const logout = () => {
         setToken('');
         localStorage.removeItem('token');
-        return true;  // Indicating that logout has been successfully executed
+        return true;
     };
 
     const apiObj = {
-        currentUser: user,
+        currentUser: loggedInUser,
         error,
         token,
         logout,
         getToken: () => token,
+        getUserById,
 
         login: async (email: string, password: string) => {
             console.log("Attempting to log in", email);
@@ -117,4 +132,3 @@ export function ApiProvider({ children }: Props) {
         {children}
     </ApiContext.Provider>
 }
-

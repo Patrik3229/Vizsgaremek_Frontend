@@ -3,18 +3,28 @@ import '../css/MainPage.scoped.css'
 
 export function MainPage() {
 
-    const [successMessage, setSuccessMessage] = useState('');
+    const [recipeAddedMessage, setRecipeAddedMessage] = useState('');
+    const [userNotFoundMessage, setUserNotFoundMessage] = useState('');
+
     useEffect(() => {
-        const message = localStorage.getItem('recipeAdded');
-        if (message) {
-            setSuccessMessage(message);
+        const recipeMessage  = localStorage.getItem('recipeAdded');
+        const userNotFound = localStorage.getItem('userNotFound');
+
+        if (recipeMessage) {
+            setRecipeAddedMessage(recipeMessage);
             localStorage.removeItem('recipeAdded');
+        }
+
+        if (userNotFound) {
+            setUserNotFoundMessage(userNotFound);
+            localStorage.removeItem('userNotFound');
         }
     }, []);
 
     return <div className='row'>
         <div>
-            {successMessage && <p className="alert alert-success">{successMessage}</p>}
+            {recipeAddedMessage && <p className="alert alert-success">{recipeAddedMessage}</p>}
+            {userNotFoundMessage && <p className="alert alert-danger">{userNotFoundMessage}</p>}
         </div>
         <h1>Welcome to our page!</h1>
         <p>This is a website which you can upload, view, rate and even comment on recipes! Start browsing now!</p><br />

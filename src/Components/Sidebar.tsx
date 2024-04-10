@@ -27,7 +27,7 @@ export function Sidebar() {
           </li>
           <LoggedIn>
             <li>
-              <a href="/profile" className="noUnderline">
+              <a href={`/profile/${api.currentUser?.id}`} className="noUnderline">
                 <div className="row">
                   <div className="col-2"><span className="fa fa-gear mr-3" /></div>
                   <div className="col-10">Profile</div>

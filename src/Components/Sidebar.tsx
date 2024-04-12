@@ -35,16 +35,6 @@ export function Sidebar() {
               </a>
             </li>
           </LoggedIn>
-          <NeedsRole role='manager'>
-            <li>
-              <a href="#" className="noUnderline">
-                <div className="row">
-                  <div className="col-2"><span className="fa fa-users mr-3" /></div>
-                  <div className="col-10">Users</div>
-                </div>
-              </a>
-            </li>
-          </NeedsRole>
           <li>
             <a href="#" className="noUnderline">
               <div className="row">

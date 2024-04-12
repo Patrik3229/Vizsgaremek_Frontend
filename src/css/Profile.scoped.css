@@ -7,3 +7,29 @@
     background-color: #292d8d;
     color: white !important;
 }
+
+#middle {
+    padding: 20px 0px 50px 50px;
+    overflow: auto;
+    height: 100vh;
+}
+
+#profile {
+    padding-right: 50px;
+}
+
+#role {
+    margin-bottom: 20px;
+}
+
+#postedRecipes {
+    margin-top: 50px;
+}
+
+#recipeDescription {
+    text-align: justify;
+}
+
+.h100vh {
+    height: 100vh;
+}

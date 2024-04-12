@@ -108,16 +108,16 @@ export default function Profile() {
     }
 
     return <>
-        <div className="container-fluid" style={{ height: '100vh' }} id="mainpage">
-            <div className="row" style={{ height: '100vh' }}>
-                <div className="col-2" style={{ height: '100vh' }}>
+        <div className="container-fluid h100vh" id="mainpage">
+            <div className="row h100vh">
+                <div className="col-2 h100vh">
                     <Sidebar />
                 </div>
-                <div className="col-10" style={{ padding: '20px 0px 50px 50px', overflow: 'auto', height: '100vh' }}>
+                <div className="col-10" id="middle">
                     <div className="row">
-                        <div className="col-9" style={{paddingRight: '50px'}}>
+                        <div className="col-9" id="profile">
                             <h1>User profile: {userProfile.name}</h1>
-                            <h4 style={{ marginBottom: '20px' }}>Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
+                            <h4 id="role">Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
                             {isOwnProfile ? (
                                 <button className="btn btn-primary w-100 mb-3">Edit My Profile</button>
                             ) : (
@@ -125,15 +125,15 @@ export default function Profile() {
                                     <button className="btn btn-primary w-100">Edit User</button>
                                 </NeedsRole>
                             )}
-                            <h4 style={{ marginTop: '50px' }}>Posted recipes:</h4>
+                            <h4 id="postedRecipes">Posted recipes:</h4>
                             {currentRecipes.map(recipe => (
-                                <div className="card w-100 mb-3" key={recipe.id} style={{ width: "18rem" }}>
+                                <div className="card w-100 mb-3" key={recipe.id}>
                                     <div className="card-body">
                                         <div className="spbw row mb-2">
                                             <h5 className="card-title col-10">{recipe.title}</h5>
                                             <h5 className="card-title col-2 text-end">{recipe.preptime} minutes</h5>
                                         </div>
-                                        <p className="card-subtitle mb-5" style={{textAlign: 'justify'}}>{recipe.description}</p>
+                                        <p id="recipeDescription" className="card-subtitle mb-5">{recipe.description}</p>
                                         <div className="spbw">
                                             <span>Allergens: {recipe.allergen_ids}</span>
                                             <span><span className="fa fa-solid fa-star"></span> {ratings[recipe.id]} / 5</span>

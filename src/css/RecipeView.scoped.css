@@ -1,0 +1,13 @@
+.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+    --bs-gutter-x: 0;
+    .row {
+      --bs-gutter-x: 0;
+    }
+  }
+  
+  #mainpage {
+    background-color: rgb(25, 25, 25);
+    color: white;
+  }

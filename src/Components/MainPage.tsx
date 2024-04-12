@@ -5,10 +5,12 @@ export function MainPage() {
 
     const [recipeAddedMessage, setRecipeAddedMessage] = useState('');
     const [userNotFoundMessage, setUserNotFoundMessage] = useState('');
-
+    const [recipeNotFoundMessage, setRecipeNotFoundMessage] = useState('');
+    
     useEffect(() => {
         const recipeMessage  = localStorage.getItem('recipeAdded');
         const userNotFound = localStorage.getItem('userNotFound');
+        const recipeNotFound = localStorage.getItem('recipeNotFound');
 
         if (recipeMessage) {
             setRecipeAddedMessage(recipeMessage);
@@ -18,6 +20,11 @@ export function MainPage() {
         if (userNotFound) {
             setUserNotFoundMessage(userNotFound);
             localStorage.removeItem('userNotFound');
+        }
+
+        if (recipeNotFound) {
+            setUserNotFoundMessage(recipeNotFound);
+            localStorage.removeItem('recipeNotFound');
         }
     }, []);
 

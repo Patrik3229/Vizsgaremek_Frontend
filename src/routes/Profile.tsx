@@ -32,7 +32,7 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
     const [recipesLoading, setRecipesLoading] = useState(false);
     const [error, setError] = useState('');
-    
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -70,9 +70,9 @@ export default function Profile() {
             })
             .then(ratingPromises => Promise.all(ratingPromises))
             .then(ratingsData => {
-                
+
                 const ratingsMap = ratingsData.reduce((acc, rating, _index) => {
-                    
+
                     acc[rating.id] = rating.rating;
                     return acc;
                 }, {});
@@ -113,52 +113,55 @@ export default function Profile() {
                 <div className="col-2" style={{ height: '100vh' }}>
                     <Sidebar />
                 </div>
-                <div className="col-8" style={{ padding: '20px 50px 50px 50px' }}>
-                    <h1>User profile: {userProfile.name}</h1>
-                    <h4 style={{ marginBottom: '20px' }}>Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
-                    {isOwnProfile ? (
-                        <button className="btn btn-primary w-100 mb-3">Edit My Profile</button>
-                    ) : (
-                        <NeedsRole role='manager'>
-                            <button className="btn btn-primary w-100">Edit User</button>
-                        </NeedsRole>
-                    )}
-                    <h4 style={{ marginTop: '50px' }}>Posted recipes:</h4>
-                    {currentRecipes.map(recipe => (
-                        <div className="card w-100 mb-3" key={recipe.id} style={{ width: "18rem" }}>
-                            <div className="card-body">
-                                <div className="spbw">
-                                    <h5 className="card-title">{recipe.title}</h5>
-                                    <h5 className="card-title">{recipe.preptime} minutes</h5>
+                <div className="col-10" style={{ padding: '20px 0px 50px 50px', overflow: 'auto', height: '100vh' }}>
+                    <div className="row">
+                        <div className="col-9" style={{paddingRight: '50px'}}>
+                            <h1>User profile: {userProfile.name}</h1>
+                            <h4 style={{ marginBottom: '20px' }}>Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
+                            {isOwnProfile ? (
+                                <button className="btn btn-primary w-100 mb-3">Edit My Profile</button>
+                            ) : (
+                                <NeedsRole role='manager'>
+                                    <button className="btn btn-primary w-100">Edit User</button>
+                                </NeedsRole>
+                            )}
+                            <h4 style={{ marginTop: '50px' }}>Posted recipes:</h4>
+                            {currentRecipes.map(recipe => (
+                                <div className="card w-100 mb-3" key={recipe.id} style={{ width: "18rem" }}>
+                                    <div className="card-body">
+                                        <div className="spbw row mb-2">
+                                            <h5 className="card-title col-10">{recipe.title}</h5>
+                                            <h5 className="card-title col-2 text-end">{recipe.preptime} minutes</h5>
+                                        </div>
+                                        <p className="card-subtitle mb-5" style={{textAlign: 'justify'}}>{recipe.description}</p>
+                                        <div className="spbw">
+                                            <span>Allergens: {recipe.allergen_ids}</span>
+                                            <span><span className="fa fa-solid fa-star"></span> {ratings[recipe.id]} / 5</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h6 className="card-subtitle mb-4">{recipe.description}</h6>
-                                <div className="spbw">
-                                    <span>Allergens: {recipe.allergen_ids}</span>
-                                    <span><span className="fa fa-solid fa-star"></span> {ratings[recipe.id]} / 5</span>
-                                </div>
+                            ))}
+                            <div className="d-flex justify-content-center">
+                                <ul className="pagination">
+                                    <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(0); }}>First</a>
+                                    </li>
+                                    <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage - 1); }}>Previous</a>
+                                    </li>
+                                    <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage + 1); }}>Next</a>
+                                    </li>
+                                    <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(totalPages - 1); }}>Last</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    ))}
-                    <div className="d-flex justify-content-center">
-                    <ul className="pagination">
-                        <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
-                            <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(0); }}>First</a>
-                        </li>
-                        <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
-                            <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage - 1); }}>Previous</a>
-                        </li>
-                        <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
-                            <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage + 1); }}>Next</a>
-                        </li>
-                        <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
-                            <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(totalPages - 1); }}>Last</a>
-                        </li>
-                      </ul>
+                        <div className="col-3">
+                        <TopRecipes />
+                        </div>
                     </div>
-                </div>
-                <div className="col-2">
-                    {/* Placeholder */}
-                    <TopRecipes />
                 </div>
             </div>
         </div>

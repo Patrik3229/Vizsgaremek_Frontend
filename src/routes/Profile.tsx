@@ -131,7 +131,7 @@ export default function Profile() {
                             )}
                             <h4 id="postedRecipes">Posted recipes:</h4>
                             {currentRecipes.map(recipe => (
-                                <div className="card w-100 mb-3" kkey={recipe.id} onClick={() => goToRecipe(recipe.id)} style={{ cursor: "pointer" }}>
+                                <div className="card w-100 mb-3" key={recipe.id} onClick={() => goToRecipe(recipe.id)} style={{ cursor: "pointer" }}>
                                     <div className="card-body">
                                         <div className="spbw row mb-2">
                                             <h5 className="card-title col-10">{recipe.title}</h5>

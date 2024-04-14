@@ -5,7 +5,6 @@ export function MainPage() {
 
     const [recipeAddedMessage, setRecipeAddedMessage] = useState('');
     const [userNotFoundMessage, setUserNotFoundMessage] = useState('');
-    const [recipeNotFoundMessage, setRecipeNotFoundMessage] = useState('');
     
     useEffect(() => {
         const recipeMessage  = localStorage.getItem('recipeAdded');
@@ -38,7 +37,7 @@ export function MainPage() {
         <h4>Authors:</h4>
         <ul style={{paddingLeft: '40px'}}>
             <li>Elekes Fanni</li>
-            <li>Fecske Márk</li>
+            <li><s>Fecske Márk</s></li>
             <li>Kovács Patrik</li>
         </ul>
     </div>

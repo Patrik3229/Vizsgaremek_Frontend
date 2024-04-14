@@ -13,6 +13,7 @@ import { ApiProvider } from './api';
 import CreateRecipe from './routes/CreateRecipe';
 import Profile from './routes/Profile';
 import RecipeView from './routes/RecipeView';
+import EditRecipe from './routes/EditRecipe';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/recipe/:id",
     element: <RecipeView />
+  },
+  {
+    path: "/edit-recipe/:id",
+    element: <EditRecipe />
   }
 ]);
 

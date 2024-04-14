@@ -63,7 +63,7 @@ export default function Profile() {
                 setRecipesLoading(false);
                 return data.map((recipe: Recipe) => {
                     const fetchUrl = `http://localhost:3000/ratings/find${recipe.id}`; // Corrected URL
-                    console.log('Fetching rating for recipe ID:', recipe.id, 'URL:', fetchUrl); // Log the URL and ID
+                    console.log(data); // Log the URL and ID
                     return fetch(fetchUrl)
                         .then(res => res.json())
                         .catch(error => {
@@ -88,6 +88,8 @@ export default function Profile() {
                 setRecipesLoading(false);
             });
     }, [id, getUserById]);
+
+    
 
     if (loading || recipesLoading) {
         return <div>Loading...</div>;

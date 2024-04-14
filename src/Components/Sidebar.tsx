@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import '../css/Sidebar.scoped.css'
-import { Guest, LoggedIn, NeedsRole } from './auth'
+import { Guest, LoggedIn } from './auth'
 import { ApiContext } from '../api'
 import { Logout } from './Logout';
 

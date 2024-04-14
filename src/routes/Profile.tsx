@@ -34,7 +34,7 @@ export default function Profile() {
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
-    
+
     const goToRecipe = (recipeId: number) => {
         navigate(`/recipe/${recipeId}`); // Adjust the path as per your routing setup
     };
@@ -163,7 +163,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="col-3">
-                        <TopRecipes />
+                            <TopRecipes />
                         </div>
                     </div>
                 </div>

@@ -125,7 +125,8 @@ export default function Profile() {
                             <h1>User profile: {userProfile.name}</h1>
                             <h4 id="role">Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
                             {isOwnProfile ? (
-                                <button className="btn btn-primary w-100 mb-3">Edit My Profile</button>
+                                <><a href={`/edit-profile/${currentUser!.id}`}> <button className="btn btn-primary w-100 mb-3">Edit My Profile</button></a></>
+                                
                             ) : (
                                 <NeedsRole role='manager'>
                                     <button className="btn btn-primary w-100">Edit User</button>

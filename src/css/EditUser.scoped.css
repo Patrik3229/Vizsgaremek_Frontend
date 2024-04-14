@@ -1,0 +1,42 @@
+.row {
+    --bs-gutter-x: 0;
+    overflow: auto;
+    height: 100vh;
+}
+
+#updatePage {
+    background-color: rgb(25, 25, 25);
+    color: white;
+}
+
+.card {
+    background-color: #292d8d;
+}
+
+label {
+    font-weight: bold;
+    font-size: large;
+}
+
+li label {
+    font-size: medium;
+    font-weight: normal;
+}
+
+.form-group{
+    margin-bottom: 1.5rem;
+}
+
+#loginCard {
+    background-color: #292d8d;
+}
+
+.mb {
+    margin-bottom: 0.2rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+    grid-gap: 5px; /* Spacing between columns */
+}

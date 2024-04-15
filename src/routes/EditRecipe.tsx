@@ -48,18 +48,14 @@ export default function EditRecipe() {
                 const allergensResponse = await fetch(`http://localhost:3000/allergens/find-recipe/${id}`);
                 const allergenText = await allergensResponse.text();
                 const allergenObjects = JSON.parse(allergenText);
-                console.log('Allergen Objects:', allergenObjects);
 
                 const allergenIds = allergenObjects.map((obj: AllergenObject) => {
                     const label = obj.name;  // Accessing the name property directly from the parsed object
                     const found = allergens.find(allergen => allergen.name.toLowerCase() === label.toLowerCase());
-                    console.log('Searching for:', label, 'Found:', found);
                     return found ? found.id : null;
                 }).filter((id: number | null) => id !== null);
     
-                setSelectedAllergens(allergenIds);
-                console.log('Selected Allergen IDs:', allergenIds);
-                
+                setSelectedAllergens(allergenIds);                
             } catch (error) {
                 console.error('Failed to fetch recipe:', error);
             }
@@ -71,8 +67,11 @@ export default function EditRecipe() {
     // Function to handle form submission
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        const numericId = parseInt(id, 10);
+        console.log(selectedAllergens);
         const updatedRecipe = {
-            title, description, content, preptime: parseInt(preptime, 10), allergens: Array.from(selectedAllergens),
+            id: numericId, title, description, content, preptime: parseInt(preptime, 10), allergens: Array.from(selectedAllergens),
         };
 
         try {
@@ -86,8 +85,7 @@ export default function EditRecipe() {
                 body: JSON.stringify(updatedRecipe),
             });
             if (!response.ok) throw new Error('Failed to update the recipe.');
-            console.log(response);
-            navigate(`/recipes/${id}`);
+            navigate(`/recipe/${id}`);
         } catch (error) {
             const message = error instanceof Error ? error.message : 'An unknown error occurred';
             console.error('Update failed:', message);
@@ -100,6 +98,7 @@ export default function EditRecipe() {
             ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
             : [...selectedAllergens, id]; // Add id
         setSelectedAllergens(newSelectedAllergens);
+        console.log(newSelectedAllergens);
     };
     return (
         <div className="row h-100 w-100" id="mainpage">

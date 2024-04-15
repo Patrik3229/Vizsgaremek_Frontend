@@ -32,6 +32,7 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
     const [recipesLoading, setRecipesLoading] = useState(false);
     const [error, setError] = useState('');
+    const [profileUpdatedMessage, setProfileUpdatedMessage] = useState('');
 
     const navigate = useNavigate();
 
@@ -63,7 +64,6 @@ export default function Profile() {
                 setRecipesLoading(false);
                 return data.map((recipe: Recipe) => {
                     const fetchUrl = `http://localhost:3000/ratings/find${recipe.id}`; // Corrected URL
-                    console.log(data); // Log the URL and ID
                     return fetch(fetchUrl)
                         .then(res => res.json())
                         .catch(error => {
@@ -87,9 +87,17 @@ export default function Profile() {
                 setError('Failed to load recipes or ratings');
                 setRecipesLoading(false);
             });
+
+        const profileUpdated = localStorage.getItem('profileUpdated');
+
+        if (profileUpdated) {
+            setProfileUpdatedMessage(profileUpdated);
+            localStorage.removeItem('profileUpdated');
+        }
+
     }, [id, getUserById]);
 
-    
+
 
     if (loading || recipesLoading) {
         return <div>Loading...</div>;
@@ -122,14 +130,15 @@ export default function Profile() {
                 <div className="col-10" id="middle">
                     <div className="row">
                         <div className="col-9" id="profile">
+                            {profileUpdatedMessage && <p className="alert alert-success">{profileUpdatedMessage}</p>}
                             <h1>User profile: {userProfile.name}</h1>
                             <h4 id="role">Role: {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}</h4>
                             {isOwnProfile ? (
                                 <><a href={`/edit-profile/${currentUser!.id}`}> <button className="btn btn-primary w-100 mb-3">Edit My Profile</button></a></>
-                                
+
                             ) : (
                                 <NeedsRole role='manager'>
-                                    <button className="btn btn-primary w-100">Edit User</button>
+                                    <><a href={`/edit-profile/${userProfile.id}`}><button className="btn btn-primary w-100">Edit User</button></a></>
                                 </NeedsRole>
                             )}
                             <h4 id="postedRecipes">Posted recipes:</h4>

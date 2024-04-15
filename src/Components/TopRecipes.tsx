@@ -12,11 +12,7 @@ export function TopRecipes() {
         const response = await fetch('http://localhost:3000/ratings/top-5');
         const data = await response.json();
         setTopRecipes(data); // Assuming the response is an array of recipes
-
-        //console.log("Top Recipes Data:", data);
-                data.forEach(recipe => {
-                  console.log(`Title: ${recipe.title}, Rating Object:`, recipe.rating);
-                });
+        
       } catch (error) {
         console.error('Failed to fetch top recipes:', error);
       }

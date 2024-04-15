@@ -81,7 +81,7 @@ export function Search() {
                                             type="checkbox"
                                             id={`allergen-${allergen.id}`}
                                             onChange={() => toggleAllergen(allergen.id)}
-                                        /> {allergen.name}
+                                        />&nbsp;{allergen.name}
                                     </label>
                                 </li>
                             ))}

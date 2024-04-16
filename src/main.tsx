@@ -15,6 +15,7 @@ import Profile from './routes/Profile';
 import RecipeView from './routes/RecipeView';
 import EditRecipe from './routes/EditRecipe';
 import EditUser from './routes/EditUser';
+import SearchResults from './routes/SearchResults';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/edit-profile/:id",
     element: <EditUser />
+  },
+  {
+    path: "/search",
+    element: <SearchResults />
   }
 ]);
 

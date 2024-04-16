@@ -34,6 +34,8 @@ export default function Profile() {
     const [error, setError] = useState('');
     const [profileUpdatedMessage, setProfileUpdatedMessage] = useState('');
 
+    console.log(recipes);
+
     const navigate = useNavigate();
 
     const goToRecipe = (recipeId: number) => {
@@ -120,6 +122,8 @@ export default function Profile() {
     const handleNavigation = (newPage: number) => {
         setCurrentPage(newPage);
     }
+
+    console.log(currentRecipes);
 
     return <>
         <div className="container-fluid h100vh" id="mainpage">

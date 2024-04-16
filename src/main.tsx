@@ -16,6 +16,7 @@ import RecipeView from './routes/RecipeView';
 import EditRecipe from './routes/EditRecipe';
 import EditUser from './routes/EditUser';
 import SearchResults from './routes/SearchResults';
+import { SearchProvider } from './Components/SearchContext';
 
 const router = createBrowserRouter([
   {
@@ -59,7 +60,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ApiProvider>
-      <RouterProvider router={router} />
+      <SearchProvider>
+        <RouterProvider router={router} />
+      </SearchProvider>
     </ApiProvider>
   </React.StrictMode>,
 )

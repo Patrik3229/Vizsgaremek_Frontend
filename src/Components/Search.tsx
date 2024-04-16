@@ -1,11 +1,13 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
+import { useSearchResults } from './SearchContext';
 import '../css/Search.scoped.css'
+import { useNavigate } from 'react-router-dom';
 
-export function Search() {
+export function Search({ children = null }) {
 
-    const [searchText, setSearchText] = useState<string>('');
-    //const [searchError, setSearchError] = useState<string>('');
-    const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
+    const { searchText, setSearchText, setSearchResults, selectedAllergens, setSelectedAllergens } = useSearchResults();
+
+    const navigate = useNavigate();
 
     const allergens = [
         { id: 1, name: 'Gluten' },
@@ -48,7 +50,13 @@ export function Search() {
             body: JSON.stringify(searchData),
         });
 
-        if (!response.ok) {
+        if (response.ok) {
+            const data = await response.json();
+            setSearchResults(data);
+            console.log('Search Response:', data);
+            navigate('/search')
+        }
+        else {
             //const errorObj = await response.json();
             //setSearchError(errorObj.message);
             return;
@@ -56,6 +64,7 @@ export function Search() {
     }
 
     return <>
+
         <div className="row">
             <form onSubmit={searchLogic} role="search" className='d-flex w-100'>
                 <div className="col-10" id='searchBox'>
@@ -89,6 +98,7 @@ export function Search() {
                     </div>
                 </div>
             </form>
+            {children}
         </div>
         {/*<p>{searchError}</p>*/}
     </>

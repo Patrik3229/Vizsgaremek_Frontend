@@ -8,12 +8,23 @@ import { ApiContext } from "../api";
 export default function RecipeView() {
 
     const { id } = useParams(); // This will extract `id` from the URL
-    const [recipe, setRecipe] = useState(null); // This will hold our fetched recipe
+    const [recipe, setRecipe] = useState<Recipe>(null); // This will hold our fetched recipe
     const [allergens, setAllergens] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const { currentUser } = useContext(ApiContext);
+    const { currentUser, token } = useContext(ApiContext);
+
+    interface Recipe {
+        id: number;
+        user_id: number;
+        username: string;
+        title: string;
+        preptime: number;
+        description: string;
+        content: string;
+        allergen_ids: string[];
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -38,13 +49,54 @@ export default function RecipeView() {
             }
         };
 
+        async function fetchRatings() {
+            try {
+                const response = await fetch(`http://localhost:3000/ratings/getAll`);
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Failed to fetch ratings:', error);
+            }
+        }
+
+        
+
         fetchRecipe();
+        fetchRatings();
     }, [id]); // This effect will re-run whenever the `id` changes
+
+    async function deleteRecipe() {
+        try {
+            const data = {
+                id: recipe.id
+            };
+            const response = await fetch(`http://localhost:3000/recipes/delete${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(data),
+            });
+    
+            const result = await response.json(); // Assuming the server responds with JSON
+            if (response.ok) {
+                console.log('Recipe deleted successfully:', result);
+                navigate('/'); // Redirect or update UI accordingly
+            } else {
+                throw new Error(result.message || 'Failed to delete the recipe');
+            }
+        } catch (error) {
+            console.error('Failed to delete recipe:', error);
+        }
+    }
 
     // Handling loading state or no data found
     if (!recipe) return <div>Loading...</div>;
 
     const canEdit = currentUser && (currentUser.id === recipe.user_id || ['manager', 'admin'].includes(currentUser.role));
+    console.log(`Recipe: ${recipe.id}`);
 
     const allergenNames = allergens.map(a => a.name).join(', ');
 
@@ -67,13 +119,15 @@ export default function RecipeView() {
                             </div>
                             <div>
                                 {canEdit && (
-                                <>
-                                <button className="btn btn-primary w-100 mt-5" onClick={() => navigate(`/edit-recipe/${id}`)}>Edit This Recipe</button>
-                                <button className="btn btn-danger w-100 mt-2" onClick={() => navigate(`/delete-recipe/${id}`)}>Delete This Recipe</button>
-                                </>
-                                
+                                    <>
+                                        <button className="btn btn-primary w-100 mt-5" onClick={() => navigate(`/edit-recipe/${id}`)}>Edit This Recipe</button>
+                                        <button className="btn btn-danger w-100 mt-2" onClick={deleteRecipe}>Delete This Recipe</button>
+                                    </>
+
                                 )}
                             </div>
+                            <hr style={{ margin: '30px 0px 30px 0px' }} />
+                            <h3>Reviews</h3>
                         </div>
                         <div className="col-3">
                             <TopRecipes />

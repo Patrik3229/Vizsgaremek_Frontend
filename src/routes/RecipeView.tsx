@@ -8,10 +8,10 @@ import { ApiContext } from "../api";
 export default function RecipeView() {
 
     const { id } = useParams(); // This will extract `id` from the URL
-    const [recipe, setRecipe] = useState<Recipe>(null); // This will hold our fetched recipe
-    const [allergens, setAllergens] = useState([]);
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [recipe, setRecipe] = useState<Recipe | null>(null); // This will hold our fetched recipe
+    const [allergens, setAllergens] = useState<Allergen[]>([]);
+    const [_error, setError] = useState('');
+    const [_loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const { currentUser, token } = useContext(ApiContext);
@@ -27,6 +27,11 @@ export default function RecipeView() {
         allergen_ids: string[];
     }
 
+    interface Allergen {
+        id: number; // assuming there's also an id
+        name: string;
+    }
+
     useEffect(() => {
         setLoading(true);
         async function fetchRecipe() {
@@ -34,6 +39,7 @@ export default function RecipeView() {
                 const response = await fetch(`http://localhost:3000/recipes/find${id}`);
                 const data = await response.json();
                 setRecipe(data); // Set the fetched recipe into state
+                console.log(data);
 
                 const allergensResponse = await fetch(`http://localhost:3000/allergens/find-recipe/${id}`);
                 const allergensData = await allergensResponse.json();
@@ -52,7 +58,7 @@ export default function RecipeView() {
 
         async function fetchRatings() {
             try {
-                const response = await fetch(`http://localhost:3000/ratings/getAll`);
+                const response = await fetch(`http://localhost:3000/ratings/find-recipe/${id}`);
                 const data = await response.json();
                 console.log(data);
             } catch (error) {

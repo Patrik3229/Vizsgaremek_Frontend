@@ -7,6 +7,10 @@ import { ApiContext } from "../api";
 import { NeedsRole } from "../Components/auth";
 import { TopRecipes } from "../Components/TopRecipes";
 
+/**
+ * Interfész a receptek definiálására.
+ * @interface
+ */
 interface Recipe {
     id: number;
     title: string;
@@ -15,10 +19,18 @@ interface Recipe {
     allergen_ids: string[];
 }
 
+/**
+ * Interfész az értékelések tárolására.
+ * @interface
+ */
 interface RatingMap {
-    [key: number]: string | number; // Depending on how ratings are actually stored, you might choose `string`, `number`, or another type
+    [key: number]: string | number;
 }
 
+/**
+ * Profil komponens, amely a felhasználói profil és a hozzá kapcsolódó receptek megjelenítéséért felel.
+ * @returns {JSX.Element} A felhasználói profil komponens.
+ */
 export default function Profile() {
 
     const { getUserById } = useContext(ApiContext);
@@ -34,12 +46,14 @@ export default function Profile() {
     const [error, setError] = useState('');
     const [profileUpdatedMessage, setProfileUpdatedMessage] = useState('');
 
-    console.log(recipes);
-
     const navigate = useNavigate();
 
+    /**
+     * Recept megtekintésére szolgáló navigációs függvény.
+     * @param {number} recipeId - A megtekintendő recept azonosítója.
+     */
     const goToRecipe = (recipeId: number) => {
-        navigate(`/recipe/${recipeId}`); // Adjust the path as per your routing setup
+        navigate(`/recipe/${recipeId}`);
     };
 
     useEffect(() => {
@@ -65,12 +79,12 @@ export default function Profile() {
                 setRecipes(data);
                 setRecipesLoading(false);
                 return data.map((recipe: Recipe) => {
-                    const fetchUrl = `http://localhost:3000/ratings/find${recipe.id}`; // Corrected URL
+                    const fetchUrl = `http://localhost:3000/ratings/find${recipe.id}`;
                     return fetch(fetchUrl)
                         .then(res => res.json())
                         .catch(error => {
                             console.error('Failed to fetch rating for recipe', recipe.id, error);
-                            return { id: recipe.id, rating: "No rating available" };  // Fallback rating
+                            return { id: recipe.id, rating: "No rating available" };
                         });
                 });
             })
@@ -119,11 +133,13 @@ export default function Profile() {
     const startIndex = currentPage * itemsPerPage;
     const currentRecipes = recipes.slice(startIndex, startIndex + itemsPerPage);
 
+    /**
+     * Oldalak közötti navigáció kezelője.
+     * @param {number} newPage - Az új oldalszám.
+     */
     const handleNavigation = (newPage: number) => {
         setCurrentPage(newPage);
     }
-
-    console.log(currentRecipes);
 
     return <>
         <div className="container-fluid h100vh" id="mainpage">

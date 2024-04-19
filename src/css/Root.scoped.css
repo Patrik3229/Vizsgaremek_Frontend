@@ -11,3 +11,8 @@
   background-color: rgb(25, 25, 25);
   color: white;
 }
+
+#middle {
+    overflow: auto;
+    height: 100vh;
+}

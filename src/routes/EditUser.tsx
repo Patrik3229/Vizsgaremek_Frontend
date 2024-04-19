@@ -16,8 +16,10 @@ export default function EditUser() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const userData = await getUserById(parseInt(id));
-                console.log(userData.role);
+                const userData = await getUserById(parseInt(id as string));
+                if (!userData){
+                    throw new Error("User not found");
+                }
                 setEmail(userData.email);
                 setName(userData.name);
                 setRole(userData.role);
@@ -38,7 +40,7 @@ export default function EditUser() {
         e.preventDefault();
         const token = getToken();
 
-        const numericId = parseInt(id, 10);
+        const numericId = parseInt(id as string, 10);
         const roleLowerCase = role.toLowerCase();
 
         console.log(`name being sent: ${name}`);

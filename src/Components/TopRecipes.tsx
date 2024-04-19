@@ -3,7 +3,12 @@ import '../css/TopRecipes.scoped.css'
 
 export function TopRecipes() {
 
-  const [topRecipes, setTopRecipes] = useState([]);
+  const [topRecipes, setTopRecipes] = useState<Recipe[]>([]);
+
+  interface Recipe {
+    id: number,
+    title: string
+  }
 
   // Fetch top recipes on component mount
   useEffect(() => {
@@ -12,7 +17,7 @@ export function TopRecipes() {
         const response = await fetch('http://localhost:3000/ratings/top-5');
         const data = await response.json();
         setTopRecipes(data); // Assuming the response is an array of recipes
-        
+
       } catch (error) {
         console.error('Failed to fetch top recipes:', error);
       }
@@ -20,19 +25,21 @@ export function TopRecipes() {
 
     fetchTopRecipes();
   }, []); // Empty dependency array means this effect will only run once after the component mounts
-  return <div className="h-100 d-flex align-items-stretch">
+  return <div>
     <nav id="sidebar" className="p-4">
       <div>
         <h2 style={{ textAlign: 'center' }}>
-          <a href="index.html" className="logo noUnderline">
-            Top recipes
-          </a>
+          Top recipes
         </h2>
-        <ul>
+        <ul className='list-unstyled'>
           {topRecipes.map(recipe => (
             <li key={recipe.id}>
-              <a href={`/recipe/${recipe.id}`}>
-                <div>{recipe.title}</div>
+
+              <a className='noUnderline' href={`/recipe/${recipe.id}`}>
+                <div className="row">
+                  <div className="col-2"><i className="fa fa-cutlery"></i></div>
+                  <div className="col-10">{recipe.title}</div>
+                </div>
               </a>
             </li>
           ))}

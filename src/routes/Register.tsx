@@ -68,13 +68,7 @@ export default function Register() {
                         <label className="d-flex flex-row align-items-center" htmlFor="confirmPassword">Password Again</label>
                         <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" required onChange={e => setPasswordAgain(e.currentTarget.value)} />
                     </div>
-                    <div className="mt-4 mb-1">
-                        <div>
-                            <input type="checkbox" id="remember-me" name="remember-me" />
-                            <label htmlFor="remember-me">Remember me</label>
-                        </div>
-                    </div>
-                    <div className="form-group">
+                    <div className="form-group pt-3">
                         <button className="btn btn-primary w-100" type="submit">
                             Register
                         </button>

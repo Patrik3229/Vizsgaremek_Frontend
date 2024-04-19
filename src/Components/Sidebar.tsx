@@ -12,7 +12,7 @@ export function Sidebar() {
     <nav id="sidebar" className="p-4">
       <div>
         <h2>
-          <a href="index.html" className="logo noUnderline">
+          <a href="/" className="noUnderline" id='pageTitle'>
             Vizsgaremek
           </a>
         </h2>

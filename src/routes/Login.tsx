@@ -40,16 +40,7 @@ export default function Login() {
                         <label className="d-flex flex-row align-items-center" htmlFor="password">Password</label>
                         <input type="password" className="form-control" id="password" name="password" required onChange={e => setPassword(e.currentTarget.value)} />
                     </div>
-                    <div className="mt- mb-1">
-                        <div>
-                            <input type="checkbox" className="custom-control-input" id="remember-me" name="remember-me"
-                            />
-                            <label htmlFor="remember-me">
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-                    <div className="form-group">
+                    <div className="form-group pt-3">
                         <button className="btn btn-primary w-100" type="submit">
                             Log In
                         </button>

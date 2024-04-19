@@ -68,7 +68,7 @@ export default function EditRecipe() {
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const numericId = parseInt(id, 10);
+        const numericId = parseInt(id as string, 10);
         console.log(selectedAllergens);
         const updatedRecipe = {
             id: numericId, title, description, content, preptime: parseInt(preptime, 10), allergens: Array.from(selectedAllergens),

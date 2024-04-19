@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import '../css/MainPage.scoped.css'
 
 export function MainPage() {
 

@@ -8,15 +8,7 @@
 
 #loginPage {
     background-color: rgb(25, 25, 25);
-    font-family: 'Muli', sans-serif;
 }
-
-h1 {
-    color: #fff;
-    padding-bottom: 2rem;
-    font-weight: bold;
-}
-
 
 a:hover {
     text-decoration: none;
@@ -40,10 +32,6 @@ label {
 
 .form-group{
     margin-bottom: 1rem;
-}
-
-#remember-me{
-    margin-right: 5px;
 }
 
 #loginCard {

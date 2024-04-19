@@ -84,11 +84,12 @@ export function Search({ children = null }) {
                         </button>
                         <ul className="dropdown-menu" id='allergensList'>
                             {allergens.map(allergen => (
-                                <li key={allergen.id}>
-                                    <label htmlFor={`allergen-${allergen.id}`}>
+                                <li key={allergen.id} className='dropdown-item'>
+                                    <label htmlFor={`allergen-${allergen.id}`} className='pointerCursor'>
                                         <input
                                             type="checkbox"
                                             id={`allergen-${allergen.id}`}
+                                            className='pointerCursor'
                                             onChange={() => toggleAllergen(allergen.id)}
                                         />&nbsp;{allergen.name}
                                     </label>

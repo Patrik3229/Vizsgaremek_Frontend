@@ -61,7 +61,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ApiProvider>
       <SearchProvider>
+        
         <RouterProvider router={router} />
+        
       </SearchProvider>
     </ApiProvider>
   </React.StrictMode>,

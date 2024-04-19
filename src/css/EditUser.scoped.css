@@ -26,17 +26,3 @@ li label {
 .form-group{
     margin-bottom: 1.5rem;
 }
-
-#loginCard {
-    background-color: #292d8d;
-}
-
-.mb {
-    margin-bottom: 0.2rem;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
-    grid-gap: 5px; /* Spacing between columns */
-}

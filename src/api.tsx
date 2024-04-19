@@ -8,7 +8,10 @@ export const ApiContext = createContext({
     token: '',
     currentUser: null as (User | null),
     getToken: () => '' as string,
-    getUserById: async (_id: number) => { },
+    getUserById: async (_id: number): Promise<User | undefined> => {
+        console.warn("getUserById default function used, which should be overridden");
+        return undefined;
+    },
 });
 
 interface Props {
@@ -19,7 +22,7 @@ export function ApiProvider({ children }: Props) {
     const [token, setToken] = useState<string>('');
     const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
     const [error, setError] = useState<string>('');
-    
+
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -60,7 +63,7 @@ export function ApiProvider({ children }: Props) {
 
     }, [token]);
 
-    async function getUserById(id: number) {
+    async function getUserById(id: number): Promise<User | undefined> {
         try {
             const response = await fetch(`http://localhost:3000/users/find${id}`, {
                 headers: {
@@ -70,7 +73,7 @@ export function ApiProvider({ children }: Props) {
             if (!response.ok) {
                 throw new Error('Failed to fetch user data');
             }
-            return await response.json();
+            return await response.json() as User;
         } catch (error) {
             console.error("Error fetching user by ID:", error);
             throw error;  // Or handle the error as needed
@@ -125,7 +128,7 @@ export function ApiProvider({ children }: Props) {
             }
 
         },
-        
+
     };
 
     return <ApiContext.Provider value={apiObj}>

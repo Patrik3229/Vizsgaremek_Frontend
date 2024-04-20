@@ -35,12 +35,12 @@ export function MainPage() {
         }
 
         if (recipeDeleted) {
-            setSearchNotSuccessfulMessage(recipeDeleted);
+            setRecipeDeletedMessage(recipeDeleted);
             localStorage.removeItem('recipeDeleted');
         }
 
         if (searchNotSuccessful) {
-            setRecipeDeletedMessage(searchNotSuccessful);
+            setSearchNotSuccessfulMessage(searchNotSuccessful);
             localStorage.removeItem('searchNotSuccessful');
         }
     }, []);

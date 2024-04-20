@@ -4,8 +4,8 @@ import '../css/Sidebar.scoped.css'
 import { useNavigate } from "react-router-dom";
 
 /**
- * Kijelentkezés logikájának meghívása & Log out gomb
- * @returns Log out gombot
+ * Kijelentkezés logikájának meghívása & Log out gomb.
+ * @returns Log out gombot.
  */
 export function Logout(){
 

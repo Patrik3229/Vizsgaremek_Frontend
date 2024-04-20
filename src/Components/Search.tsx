@@ -2,29 +2,13 @@ import { FormEvent } from 'react';
 import { useSearchResults } from './SearchContext';
 import '../css/Search.scoped.css'
 import { useNavigate } from 'react-router-dom';
+import allergens from '../allergens';
 
 export function Search({ children = null }) {
 
     const { searchText, setSearchText, setSearchResults, selectedAllergens, setSelectedAllergens } = useSearchResults();
 
     const navigate = useNavigate();
-
-    const allergens = [
-        { id: 1, name: 'Gluten' },
-        { id: 2, name: 'Crustaceans' },
-        { id: 3, name: 'Eggs' },
-        { id: 4, name: 'Fish' },
-        { id: 5, name: 'Peanuts' },
-        { id: 6, name: 'Soybeans' },
-        { id: 7, name: 'Milk' },
-        { id: 8, name: 'Nuts' },
-        { id: 9, name: 'Celery' },
-        { id: 10, name: 'Mustard' },
-        { id: 11, name: 'Sesame seeds' },
-        { id: 12, name: 'Sulphur dioxide' },
-        { id: 13, name: 'Lupin' },
-        { id: 14, name: 'Molluscs' },
-    ];
 
     const toggleAllergen = (id: number) => {
         const newSelectedAllergens = selectedAllergens.includes(id)

@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Főoldal komponens & alertek.
+ * @returns A főoldal komponenst.
+ */
 export function MainPage() {
 
     const [recipeAddedMessage, setRecipeAddedMessage] = useState('');

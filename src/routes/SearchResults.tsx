@@ -6,6 +6,7 @@ import { TopRecipes } from '../Components/TopRecipes';
 import '../css/Root.scoped.css';
 import '../css/SearchResults.scoped.css';
 import { useNavigate } from 'react-router-dom';
+import allergens from '../allergens';
 
 export default function SearchResults() {
     const { searchResults } = useSearchResults();
@@ -32,23 +33,6 @@ export default function SearchResults() {
     const totalPages = Math.ceil(searchResults.length / itemsPerPage);
     const startIndex = currentPage * itemsPerPage;
     const currentRecipes = searchResults.slice(startIndex, startIndex + itemsPerPage);
-
-    const allergens: Allergen[] = [
-        { id: 1, name: 'Gluten' },
-        { id: 2, name: 'Crustaceans' },
-        { id: 3, name: 'Eggs' },
-        { id: 4, name: 'Fish' },
-        { id: 5, name: 'Peanuts' },
-        { id: 6, name: 'Soybeans' },
-        { id: 7, name: 'Milk' },
-        { id: 8, name: 'Nuts' },
-        { id: 9, name: 'Celery' },
-        { id: 10, name: 'Mustard' },
-        { id: 11, name: 'Sesame seeds' },
-        { id: 12, name: 'Sulphur dioxide' },
-        { id: 13, name: 'Lupin' },
-        { id: 14, name: 'Molluscs' },
-    ];
 
     interface Allergen {
         id: number;

@@ -35,7 +35,7 @@ export function MainPage() {
         }
 
         if (recipeDeleted) {
-            setRecipeDeletedMessage(recipeDeleted);
+            setSearchNotSuccessfulMessage(recipeDeleted);
             localStorage.removeItem('recipeDeleted');
         }
 

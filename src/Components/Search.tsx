@@ -4,19 +4,34 @@ import '../css/Search.scoped.css'
 import { useNavigate } from 'react-router-dom';
 import allergens from '../allergens';
 
-export function Search({ children = null }) {
+/**
+ * A komponens, ami tartalmazza a kereső szövegdobozt, egy dropdown menüt, illetve az ezekhez szükséges logikát.
+ * @component
+ * @returns A szövegdobozt és a, a dropdown menüt
+ */
+export function Search() {
 
     const { searchText, setSearchText, setSearchResults, selectedAllergens, setSelectedAllergens } = useSearchResults();
 
     const navigate = useNavigate();
 
+    /**
+     * Kijelölt allergének listájának módosítását kezelő függvény.
+     * Ha az allergén már kijelölt, eltávolítja, különben hozzáadja a listához.
+     * 
+     * @param id Az allergén egyedi azonosítója.
+     */
     const toggleAllergen = (id: number) => {
         const newSelectedAllergens = selectedAllergens.includes(id)
-            ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
-            : [...selectedAllergens, id]; // Add id
+            ? selectedAllergens.filter(allergenId => allergenId !== id)
+            : [...selectedAllergens, id];
         setSelectedAllergens(newSelectedAllergens);
     };
 
+    /**
+     * A keresési logikát végrehajtó aszinkron függvény.
+     * @param e A form eseménye.
+     */
     async function searchLogic(e: FormEvent) {
         e.preventDefault();
 
@@ -41,14 +56,13 @@ export function Search({ children = null }) {
             navigate('/search')
         }
         else {
-            //const errorObj = await response.json();
-            //setSearchError(errorObj.message);
+            localStorage.setItem('searchNotSuccessful', 'There was an issue with the search.');
+            navigate('/');
             return;
         }
     }
 
     return <>
-
         <div className="row">
             <form onSubmit={searchLogic} role="search" className='d-flex w-100'>
                 <div className="col-10" id='searchBox'>
@@ -57,25 +71,13 @@ export function Search({ children = null }) {
                 </div>
                 <div className="col-2">
                     <div className="btn-group" id='allergensButton'>
-                        <button
-                            type="button"
-                            className="btn btn-danger dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            data-bs-auto-close="false"
-                        >
-                            Intolerances
-                        </button>
+                        <button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="false">Intolerances</button>
                         <ul className="dropdown-menu" id='allergensList'>
                             {allergens.map(allergen => (
                                 <li key={allergen.id} className='dropdown-item'>
                                     <label htmlFor={`allergen-${allergen.id}`} className='pointerCursor'>
-                                        <input
-                                            type="checkbox"
-                                            id={`allergen-${allergen.id}`}
-                                            className='pointerCursor'
-                                            onChange={() => toggleAllergen(allergen.id)}
-                                        />&nbsp;{allergen.name}
+                                        <input type="checkbox" id={`allergen-${allergen.id}`} className='pointerCursor' onChange={() => toggleAllergen(allergen.id)}/>
+                                        &nbsp;{allergen.name}
                                     </label>
                                 </li>
                             ))}
@@ -83,8 +85,6 @@ export function Search({ children = null }) {
                     </div>
                 </div>
             </form>
-            {children}
         </div>
-        {/*<p>{searchError}</p>*/}
     </>
 }

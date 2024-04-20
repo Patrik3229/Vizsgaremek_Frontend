@@ -10,12 +10,14 @@ export function MainPage() {
     const [userNotFoundMessage, setUserNotFoundMessage] = useState('');
     const [recipeNotFoundMessage, setRecipeNotFoundMessage] = useState('');
     const [recipeDeletedMessage, setRecipeDeletedMessage] = useState('');
+    const [SearchNotSuccessfulMessage, setSearchNotSuccessfulMessage] = useState('');
     
     useEffect(() => {
         const recipeMessage  = localStorage.getItem('recipeAdded');
         const userNotFound = localStorage.getItem('userNotFound');
         const recipeNotFound = localStorage.getItem('recipeNotFound');
         const recipeDeleted = localStorage.getItem('recipeDeleted');
+        const searchNotSuccessful = localStorage.getItem('searchNotSuccessful');
 
         if (recipeMessage) {
             setRecipeAddedMessage(recipeMessage);
@@ -36,6 +38,11 @@ export function MainPage() {
             setRecipeDeletedMessage(recipeDeleted);
             localStorage.removeItem('recipeDeleted');
         }
+
+        if (searchNotSuccessful) {
+            setRecipeDeletedMessage(searchNotSuccessful);
+            localStorage.removeItem('searchNotSuccessful');
+        }
     }, []);
 
     return <div className='row'>
@@ -44,6 +51,7 @@ export function MainPage() {
             {userNotFoundMessage && <p className="alert alert-danger">{userNotFoundMessage}</p>}
             {recipeNotFoundMessage && <p className="alert alert-danger">{recipeNotFoundMessage}</p>}
             {recipeDeletedMessage && <p className="alert alert-success">{recipeDeletedMessage}</p>}
+            {SearchNotSuccessfulMessage && <p className="alert alert-danger">{SearchNotSuccessfulMessage}</p>}
         </div>
         <h1>Welcome to our page!</h1>
         <p>This is a website which you can upload, view, rate and even comment on recipes! Start browsing now!</p><br />

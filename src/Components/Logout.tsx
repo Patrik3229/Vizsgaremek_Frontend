@@ -3,7 +3,10 @@ import { ApiContext } from "../api";
 import '../css/Sidebar.scoped.css'
 import { useNavigate } from "react-router-dom";
 
-
+/**
+ * Kijelentkezés logikájának meghívása & Log out gomb
+ * @returns Log out gombot
+ */
 export function Logout(){
 
     const navigate = useNavigate();
@@ -11,7 +14,7 @@ export function Logout(){
 
     const handleLogout = () => {
         logout();
-        navigate('/'); // Navigate to main page after logout
+        navigate('/');
     };
 
     return <div className="my-2">

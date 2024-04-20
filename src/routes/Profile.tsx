@@ -29,7 +29,7 @@ interface RatingMap {
 
 /**
  * Profil komponens, amely a felhasználói profil és a hozzá kapcsolódó receptek megjelenítéséért felel.
- * @returns {JSX.Element} A felhasználói profil komponenst.
+ * @returns A felhasználói profil komponenst.
  */
 export default function Profile() {
 

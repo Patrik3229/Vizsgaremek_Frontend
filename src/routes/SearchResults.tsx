@@ -8,7 +8,12 @@ import '../css/SearchResults.scoped.css';
 import { useNavigate } from 'react-router-dom';
 import allergens from '../allergens';
 
+/**
+ * Kártyákat használva megjeleníti a keresési eredményeket.
+ * @returns A keresési eredményeket.
+ */
 export default function SearchResults() {
+
     const { searchResults } = useSearchResults();
 
     const [currentPage, setCurrentPage] = useState(0);
@@ -33,11 +38,6 @@ export default function SearchResults() {
     const totalPages = Math.ceil(searchResults.length / itemsPerPage);
     const startIndex = currentPage * itemsPerPage;
     const currentRecipes = searchResults.slice(startIndex, startIndex + itemsPerPage);
-
-    interface Allergen {
-        id: number;
-        name: string;
-    }
     
     interface AllergenIdsByRecipe {
         [key: number]: string;
@@ -47,25 +47,38 @@ export default function SearchResults() {
         name: string;
     }
 
+    /**
+     * A paginationt beállítja a megfelelő oldalra.
+     * @param newPage Az új oldalszám.
+     */
     const handleNavigation = (newPage: number) => {
         setCurrentPage(newPage);
     }
 
+    /**
+     * Egy specifikus receptre történő navigálás.
+     * @param recipeId A recept azonosítója, amire navigálni kell.
+     */
     const goToRecipe = (recipeId: number) => {
-        navigate(`/recipe/${recipeId}`); // Adjust the path as per your routing setup
+        navigate(`/recipe/${recipeId}`);
     };
 
+    /**
+     * Egy adott recept allergénjeinek lekérdezését végző függvény.
+     * @param recipeId A recept azonosítója, aminek az allergén adatait lekérdezzük.
+     * @returns String formátumban az allergének azonosítóját.
+     */
     async function fetchAllergensForRecipe(recipeId: number): Promise<string> {
         try {
             const response = await fetch(`http://localhost:3000/allergens/find-recipe/${recipeId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch allergens');
             }
-            const allergenObjects: AllergenObject[] = await response.json(); // Assuming the response is an array of objects like { name: "Lupin" }
+            const allergenObjects: AllergenObject[] = await response.json();
             console.log("Fetched allergens for recipe " + recipeId + ":", allergenObjects);
 
             const allergenIds = allergenObjects.map(obj => {
-                const allergenName = obj.name; // Accessing the name property
+                const allergenName = obj.name;
                 const foundAllergen = allergens.find(allergen => allergen.name === allergenName);
                 if (!foundAllergen) {
                     console.log("Allergen not found for name:", allergenName);
@@ -77,7 +90,7 @@ export default function SearchResults() {
                 if (b === 'Unknown') return -1;
                 return a - b;
             });
-            return allergenIds.join(', '); // Join IDs into a string for display
+            return allergenIds.join(', ');
         } catch (error) {
             console.error('Error fetching allergens:', error);
             return 'Error';

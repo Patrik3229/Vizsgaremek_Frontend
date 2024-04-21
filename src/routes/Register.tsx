@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import '../css/Register.scoped.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
 
@@ -8,6 +9,8 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
     const [registerError, setRegisterError] = useState('');
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
@@ -45,6 +48,9 @@ export default function Register() {
             const errorObj = await response.json();
             setRegisterError(errorObj.message);
             return;
+        } else {
+            localStorage.setItem('registerSuccess', 'Registration successful! You can log in now.');
+            navigate('/');
         }
     };
 

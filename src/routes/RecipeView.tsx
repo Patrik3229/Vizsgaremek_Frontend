@@ -6,10 +6,14 @@ import { TopRecipes } from "../Components/TopRecipes";
 import { ApiContext } from "../api";
 import { Ratings } from "../Components/Ratings";
 
+/**
+ * Lekéri az adott recept adatait és visszaadja azt szerkesztési és törlési opcióval, amennyiben ehhez a felhasználónak joga van.
+ * @returns A recept adatait, illetve, ha alkalmazható, módosítási és törlési lehetőséget.
+ */
 export default function RecipeView() {
 
-    const { id } = useParams(); // This will extract `id` from the URL
-    const [recipe, setRecipe] = useState<Recipe | null>(null); // This will hold our fetched recipe
+    const { id } = useParams();
+    const [recipe, setRecipe] = useState<Recipe | null>(null);
     const [allergens, setAllergens] = useState<Allergen[]>([]);
     const [_error, setError] = useState('');
     const [_loading, setLoading] = useState(true);
@@ -29,17 +33,21 @@ export default function RecipeView() {
     }
 
     interface Allergen {
-        id: number; // assuming there's also an id
+        id: number;
         name: string;
     }
 
     useEffect(() => {
         setLoading(true);
+
+        /**
+         * Lekéri a recept adatait és a hozzá tartozó allergéneket.
+         */
         async function fetchRecipe() {
             try {
                 const response = await fetch(`http://localhost:3000/recipes/find${id}`);
                 const data = await response.json();
-                setRecipe(data); // Set the fetched recipe into state
+                setRecipe(data);
 
                 const allergensResponse = await fetch(`http://localhost:3000/allergens/find-recipe/${id}`);
                 const allergensData = await allergensResponse.json();
@@ -59,12 +67,22 @@ export default function RecipeView() {
         fetchRecipe();
     }, [id]);
 
+    /**
+     * Megnyitja a modalt, ahol meg kell erősíteni, ha egy receptet törölni szeretnénk.
+     */
     const openModal = () => {
         console.log("Opening modal");
         setShowModal(true);
     };
+
+    /**
+     * Bezárja a modalt, ami a recept törlésének megerősítésére szolgál.
+     */
     const closeModal = () => setShowModal(false);
 
+    /**
+     * A recept törlésének a logikája.
+     */
     async function deleteRecipe() {
         closeModal();
         try {
@@ -77,10 +95,10 @@ export default function RecipeView() {
                 },
             });
 
-            const result = await response.json(); // Assuming the server responds with JSON
+            const result = await response.json();
             if (response.ok) {
                 console.log('Recipe deleted successfully:', result);
-                navigate('/'); // Redirect or update UI accordingly
+                navigate('/');
             } else {
                 throw new Error(result.message || 'Failed to delete the recipe');
             }

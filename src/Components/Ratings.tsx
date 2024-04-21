@@ -60,8 +60,8 @@ export function Ratings() {
                         <div>{rating.userName || 'Unknown'}</div>
                         <div><span className="fa fa-solid fa-star"></span>&nbsp;{rating.rating} / 5</div>
                     </div>
-                    <div style={{borderBottom:'1px solid grey', marginBottom:'20px'}}>
-                        <div style={{borderLeft:'3px solid grey', margin:'10px 10px 20px 0px', padding:'5px 10px 5px 10px', marginBottom:'10px'}}>{rating.content}</div>
+                    <div id="contentOuter">
+                        <div id="content">{rating.content}</div>
                     </div>
                 </div>
                 

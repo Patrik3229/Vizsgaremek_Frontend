@@ -10,7 +10,8 @@ export function MainPage() {
     const [userNotFoundMessage, setUserNotFoundMessage] = useState('');
     const [recipeNotFoundMessage, setRecipeNotFoundMessage] = useState('');
     const [recipeDeletedMessage, setRecipeDeletedMessage] = useState('');
-    const [SearchNotSuccessfulMessage, setSearchNotSuccessfulMessage] = useState('');
+    const [searchNotSuccessfulMessage, setSearchNotSuccessfulMessage] = useState('');
+    const [registerSuccessMessage, setRegisterSuccessMessage] = useState('');
     
     useEffect(() => {
         const recipeMessage  = localStorage.getItem('recipeAdded');
@@ -18,6 +19,7 @@ export function MainPage() {
         const recipeNotFound = localStorage.getItem('recipeNotFound');
         const recipeDeleted = localStorage.getItem('recipeDeleted');
         const searchNotSuccessful = localStorage.getItem('searchNotSuccessful');
+        const registerSuccess = localStorage.getItem('registerSuccess');
 
         if (recipeMessage) {
             setRecipeAddedMessage(recipeMessage);
@@ -43,6 +45,11 @@ export function MainPage() {
             setSearchNotSuccessfulMessage(searchNotSuccessful);
             localStorage.removeItem('searchNotSuccessful');
         }
+
+        if (registerSuccess) {
+            setRegisterSuccessMessage(registerSuccess);
+            localStorage.removeItem('registerSuccess');
+        }
     }, []);
 
     return <div className='row'>
@@ -51,7 +58,8 @@ export function MainPage() {
             {userNotFoundMessage && <p className="alert alert-danger">{userNotFoundMessage}</p>}
             {recipeNotFoundMessage && <p className="alert alert-danger">{recipeNotFoundMessage}</p>}
             {recipeDeletedMessage && <p className="alert alert-success">{recipeDeletedMessage}</p>}
-            {SearchNotSuccessfulMessage && <p className="alert alert-danger">{SearchNotSuccessfulMessage}</p>}
+            {searchNotSuccessfulMessage && <p className="alert alert-danger">{searchNotSuccessfulMessage}</p>}
+            {registerSuccessMessage && <p className="alert alert-success">{registerSuccessMessage}</p>}
         </div>
         <h1>Welcome to our page!</h1>
         <p>This is a website which you can upload, view, rate and even comment on recipes! Start browsing now!</p><br />

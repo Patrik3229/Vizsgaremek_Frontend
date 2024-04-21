@@ -124,7 +124,6 @@ export function ApiProvider({ children }: Props) {
          * @returns Tokent és user id-t.
          */
         login: async (email: string, password: string) => {
-            console.log("Attempting to log in", email);
             const loginData = {
                 email, password,
             }
@@ -139,15 +138,11 @@ export function ApiProvider({ children }: Props) {
                     body: JSON.stringify(loginData),
                 });
 
-                console.log("Received response", response);
-
                 if (!response.ok) {
                     const errorObj = await response.json();
-                    console.log("Login error", errorObj);
                     throw new Error(errorObj.message);
                 }
                 const tokenObj = await response.json();
-                console.log("Login successful", tokenObj);
                 setToken(tokenObj.token);
                 localStorage.setItem('token', tokenObj.token);
                 return tokenObj;
@@ -155,9 +150,7 @@ export function ApiProvider({ children }: Props) {
                 console.error("Login failed HERE", error);
                 throw error;
             }
-
         },
-
     };
 
     return <ApiContext.Provider value={apiObj}>

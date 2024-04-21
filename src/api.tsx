@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { User } from "./User";
 
+/**
+ * Létrehoz egy kontextust az API-hoz, az alapértelmezett értékekkel és műveletekkel.
+ */
 export const ApiContext = createContext({
     error: '',
     login: async (_email: string, _password: string) => { },
@@ -14,10 +17,19 @@ export const ApiContext = createContext({
     },
 });
 
+/**
+ * Típusdefiníció a komponens tulajdonságainak.
+ * @interface
+ */
 interface Props {
     children: React.ReactNode;
 }
 
+/**
+ * Kezeli a felhasználó bejelentkezési állapotát és a hozzáférési token tárolását.
+ * @param children - A komponens tulajdonságai.
+ * @returns {JSX.Element} - A gyermek komponenseket.
+ */
 export function ApiProvider({ children }: Props) {
     const [token, setToken] = useState<string>('');
     const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -33,6 +45,9 @@ export function ApiProvider({ children }: Props) {
 
     useEffect(() => {
 
+        /**
+         * Lekéri a jelenleg bejelentkezett felhasználó adatait és elmenti a userData-ba.
+         */
         async function loadLoggedInUserData() {
             const response = await fetch(`http://localhost:3000/users/me`, {
                 method: 'GET',
@@ -63,6 +78,11 @@ export function ApiProvider({ children }: Props) {
 
     }, [token]);
 
+    /**
+     * Logika, amely lekéri egy felhasználó adatait az id-ja alapján és JSON formátumban visszaadja.
+     * @param id A felhasználó id-ja.
+     * @returns JSON formátumban az adott felhasználó adatait.
+     */
     async function getUserById(id: number): Promise<User | undefined> {
         try {
             const response = await fetch(`http://localhost:3000/users/find${id}`, {
@@ -80,6 +100,9 @@ export function ApiProvider({ children }: Props) {
         }
     };
 
+    /**
+     * A kijelentkezés logikája.
+     */
     const logout = () => {
         setToken('');
         localStorage.removeItem('token');
@@ -94,6 +117,12 @@ export function ApiProvider({ children }: Props) {
         getToken: () => token,
         getUserById,
 
+        /**
+         * A bejelentkezés logikája. Elküldi a megadott adatokat a backend részére, majd visszaadja a tokent, amit a backendtől kap.
+         * @param email A felhasználó e-mail címe.
+         * @param password A felhasználó jelszava.
+         * @returns Tokent és user id-t.
+         */
         login: async (email: string, password: string) => {
             console.log("Attempting to log in", email);
             const loginData = {

@@ -86,7 +86,12 @@ export default function RecipeView() {
     async function deleteRecipe() {
         closeModal();
         try {
-            const response = await fetch(`http://localhost:3000/recipes/delete${id}`, {
+            // Determine the endpoint based on the user role
+            const deleteEndpoint = ['admin', 'manager'].includes(currentUser.role)
+                ? `http://localhost:3000/recipes/delete-admin/${id}`
+                : `http://localhost:3000/recipes/delete${id}`;
+
+            const response = await fetch(deleteEndpoint, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -157,7 +162,7 @@ export default function RecipeView() {
                                 </div>
                             )}
                             <hr style={{ margin: '50px 0px 50px 0px' }} />
-                            <h3 style={{marginBottom:'30px'}}>Reviews</h3>
+                            <h3 style={{ marginBottom: '30px' }}>Reviews</h3>
                             <div>
                                 <Ratings />
                             </div>

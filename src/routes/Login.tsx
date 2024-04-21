@@ -49,7 +49,7 @@ export default function Login() {
                 <p className="pt-3" id='footer'>
                     <div>
                         <span>Not a member? </span>
-                        <a href="/signup">Register now</a>
+                        <a href="/register">Register now</a>
                     </div>
                     <div>
                         <a href="/">Go back</a>

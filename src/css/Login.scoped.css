@@ -10,10 +10,6 @@
     background-color: rgb(25, 25, 25);
 }
 
-a:hover {
-    text-decoration: none;
-}
-
 .form-control {
     border: 1px solid #292d8d;
     color: #000;

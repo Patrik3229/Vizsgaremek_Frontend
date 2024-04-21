@@ -94,14 +94,14 @@ export default function CreateRecipe() {
                         </ul>
                     </div>
                     <div>
-                        <button className="btn btn-primary w-100 fw-bold" type="submit">
+                        <button className="btn btn-primary w-100" type="submit">
                             Post Recipe
                         </button>
                     </div>
                 </form>
                 <p className="pt-3">
-                    <div className="text-danger text-center">
-                        <a href="/">Go back</a>
+                    <div className="text-center">
+                        <a href="/" className='text-light'>Go back</a>
                     </div>
                 </p>
                 {postError && <p className="text-danger text-center">{postError}</p>}

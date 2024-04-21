@@ -84,7 +84,7 @@ export default function Profile() {
                         .then(res => res.json())
                         .catch(error => {
                             console.error('Failed to fetch rating for recipe', recipe.id, error);
-                            return { id: recipe.id, rating: "No rating available" };
+                            return { id: recipe.id, rating: null };
                         });
                 });
             })
@@ -172,7 +172,7 @@ export default function Profile() {
                                         <p id="recipeDescription" className="card-subtitle mb-5">{recipe.description}</p>
                                         <div className="spbw">
                                             <span>Allergens: {recipe.allergen_ids}</span>
-                                            <span><span className="fa fa-solid fa-star"></span> {ratings[recipe.id]} / 5</span>
+                                            <span><span className="fa fa-solid fa-star"></span>{ratings[recipe.id] !== null ? (<> {ratings[recipe.id]} / 5</>) : (` No rating available`)}</span>
                                         </div>
                                     </div>
                                 </div>

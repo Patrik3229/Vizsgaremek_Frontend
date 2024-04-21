@@ -28,7 +28,7 @@ export function Ratings() {
 
                 if (!response.ok) throw new Error('Failed to fetch ratings');
 
-                const userRequests = data.map(async (rating) => {
+                const userRequests = data.map(async (rating: Ratings) => {
                     const userResponse = await fetch(`http://localhost:3000/users/find${rating.user_id}`);
                     const userData = await userResponse.json();
                     if (!userResponse.ok) throw new Error('Failed to fetch user');

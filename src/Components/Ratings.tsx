@@ -21,6 +21,10 @@ export function Ratings() {
     }
 
     useEffect(() => {
+
+        /**
+         * Lekéri az értékeléseket és a hozzájuk tartozó felhasználó nevét.
+         */
         async function fetchRatings() {
             try {
                 const response = await fetch(`http://localhost:3000/ratings/find-recipe/${id}`)
@@ -33,7 +37,7 @@ export function Ratings() {
                     const userData = await userResponse.json();
                     if (!userResponse.ok) throw new Error('Failed to fetch user');
 
-                    return { ...rating, userName: userData.name }; // Append the user name to the rating object
+                    return { ...rating, userName: userData.name };
                 });
 
                 const ratingsWithUsers = await Promise.all(userRequests);
@@ -45,7 +49,7 @@ export function Ratings() {
             }
         }
 
-        fetchRatings()
+        fetchRatings();
     }, [id])
 
     useEffect(() => {

@@ -4,6 +4,7 @@ import '../css/RecipeView.scoped.css';
 import { useContext, useEffect, useState } from "react";
 import { TopRecipes } from "../Components/TopRecipes";
 import { ApiContext } from "../api";
+import { Ratings } from "../Components/Ratings";
 
 export default function RecipeView() {
 
@@ -39,7 +40,6 @@ export default function RecipeView() {
                 const response = await fetch(`http://localhost:3000/recipes/find${id}`);
                 const data = await response.json();
                 setRecipe(data); // Set the fetched recipe into state
-                console.log(data);
 
                 const allergensResponse = await fetch(`http://localhost:3000/allergens/find-recipe/${id}`);
                 const allergensData = await allergensResponse.json();
@@ -56,18 +56,7 @@ export default function RecipeView() {
             }
         };
 
-        async function fetchRatings() {
-            try {
-                const response = await fetch(`http://localhost:3000/ratings/find-recipe/${id}`);
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('Failed to fetch ratings:', error);
-            }
-        }
-
         fetchRecipe();
-        fetchRatings();
     }, [id]);
 
     const openModal = () => {
@@ -132,42 +121,28 @@ export default function RecipeView() {
                                 )}
                             </div>
                             {showModal && (
-                                <>
-                                    <div
-                                        className="modal fade show"
-                                        id="exampleModal"
-                                        tabIndex={-1}
-                                        aria-labelledby="exampleModalLabel"
-                                        aria-hidden="true"
-                                    >
-                                        <div className="modal-dialog">
-                                            <div className="modal-content">
-                                                <div className="modal-header">
-                                                    <h1 className="modal-title fs-5" id="exampleModalLabel">
-                                                        Are you sure?
-                                                    </h1>
-                                                </div>
-                                                <div className="modal-body">Do you indeed want to delete this recipe? This cannot be undone.</div>
-                                                <div className="modal-footer">
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-secondary"
-                                                        data-bs-dismiss="modal"
-                                                        onClick={closeModal}
-                                                    >
-                                                        Cancel
-                                                    </button>
-                                                    <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
-                                                        Delete The Recipe
-                                                    </button>
-                                                </div>
+                                <div className="modal fade show" aria-hidden="true">
+                                    <div className="modal-dialog">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h1 className="modal-title fs-5">
+                                                    Are you sure?
+                                                </h1>
+                                            </div>
+                                            <div className="modal-body">Do you indeed want to delete this recipe? This cannot be undone.</div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" onClick={closeModal}>Cancel</button>
+                                                <button type="button" className="btn btn-danger" onClick={deleteRecipe}>Delete This Recipe</button>
                                             </div>
                                         </div>
                                     </div>
-                                </>
+                                </div>
                             )}
-                            <hr style={{ margin: '30px 0px 30px 0px' }} />
-                            <h3>Reviews</h3>
+                            <hr style={{ margin: '50px 0px 50px 0px' }} />
+                            <h3 style={{marginBottom:'30px'}}>Reviews</h3>
+                            <div>
+                                <Ratings />
+                            </div>
                         </div>
                         <div className="col-3">
                             <TopRecipes />

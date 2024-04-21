@@ -52,10 +52,6 @@ export function Ratings() {
         fetchRatings();
     }, [id])
 
-    useEffect(() => {
-        console.log('Updated Ratings:', ratings);
-    }, [ratings]);
-
     return <>
         <div id="ratings">
             {ratings.map(rating => (

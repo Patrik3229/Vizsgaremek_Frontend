@@ -49,6 +49,8 @@ export function Search() {
             body: JSON.stringify(searchData),
         });
 
+        console.log(response);
+
         if (response.ok) {
             const data = await response.json();
             setSearchResults(data);

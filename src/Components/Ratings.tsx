@@ -4,7 +4,7 @@ import '../css/Ratings.scoped.css'
 
 /**
  * Komponens, ami lekéri és visszaadja egy adott recept értékeléseit.
- * @componenet
+ * @component
  * @returns Az adott recept értékeléseit.
  */
 export function Ratings() {
@@ -52,8 +52,6 @@ export function Ratings() {
 
         fetchRatings();
 
-        
-
     }, [id])
 
     useEffect(() => {
@@ -79,7 +77,6 @@ export function Ratings() {
                         <div id="content">{rating.content}</div>
                     </div>
                 </div>
-                
             ))}
         </div>
     </>

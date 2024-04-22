@@ -1,4 +1,3 @@
-// SearchContext.tsx
 import { createContext, useState, ReactNode, useContext } from 'react';
 
 interface SearchContextType {
@@ -10,8 +9,12 @@ interface SearchContextType {
     setSearchResults: (results: any[]) => void;
 }
 
-const SearchResultContext = createContext<SearchContextType | null>(null);  // Allow for null to handle the error state
+const SearchResultContext = createContext<SearchContextType | null>(null);
 
+/**
+ * 
+ * @returns 
+ */
 export function useSearchResults() {
     const context = useContext(SearchResultContext);
     if (!context) {

@@ -77,14 +77,20 @@ export default function Profile() {
             .then(response => response.json())
             .then(data => {
                 setRecipes(data);
+                console.log(data)
                 setRecipesLoading(false);
                 return data.map((recipe: Recipe) => {
-                    const fetchUrl = `http://localhost:3000/ratings/find${recipe.id}`;
+                    const fetchUrl = `http://localhost:3000/ratings/avg-recipe/${recipe.id}`;
                     return fetch(fetchUrl)
                         .then(res => res.json())
+                        .then(ratingData => {
+                            const ratingValue = ratingData[0] && ratingData[0].rating ? ratingData[0].rating.toFixed(2) + " / 5" : 'No rating'; // Ensure the rating data is present and rounded
+                            console.log('Rating for recipe', recipe.id, ':', ratingValue); // Logging each rating
+                            return { id: recipe.id, rating: ratingValue };
+                        })
                         .catch(error => {
                             console.error('Failed to fetch rating for recipe', recipe.id, error);
-                            return { id: recipe.id, rating: null };
+                            return { id: recipe.id, rating: 'No rating' };
                         });
                 });
             })
@@ -172,7 +178,7 @@ export default function Profile() {
                                         <p id="recipeDescription" className="card-subtitle mb-5">{recipe.description}</p>
                                         <div className="spbw">
                                             <span>Allergens: {recipe.allergen_ids}</span>
-                                            <span><span className="fa fa-solid fa-star"></span>{ratings[recipe.id] !== null ? (<> {ratings[recipe.id]} / 5</>) : (` No rating available`)}</span>
+                                            <span><span className="fa fa-solid fa-star"></span>{` ${ratings[recipe.id]}`}</span>
                                         </div>
                                     </div>
                                 </div>

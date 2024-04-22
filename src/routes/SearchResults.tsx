@@ -106,6 +106,7 @@ export default function SearchResults() {
                 <div className="col-8" id='search' style={{ padding: '20px 50px 50px 50px' }}>
                     <Search />
                     {currentRecipes.map((recipe, index) => {
+                        const formattedRating = recipe.rating ? parseFloat(recipe.rating).toFixed(2) : 'No rating';
                         return (
                             <div className="card w-100 mb-3" key={index} style={{ cursor: "pointer" }} onClick={() => goToRecipe(recipe.id)}>
                                 <div className="card-body">
@@ -116,7 +117,7 @@ export default function SearchResults() {
                                     <p id="recipeDescription" className="card-subtitle mb-5">{recipe.description}</p>
                                     <div className="spbw">
                                         <span>Allergens: {allergenIdsByRecipe[recipe.id]}</span>
-                                        <span><span className="fa fa-solid fa-star"></span> {recipe.rating} / 5</span>
+                                        <span><span className="fa fa-solid fa-star"></span> {formattedRating === 'No rating' ? 'No rating available' : `${formattedRating} / 5`}</span>
                                     </div>
                                 </div>
                             </div>

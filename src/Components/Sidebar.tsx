@@ -4,6 +4,11 @@ import { Guest, LoggedIn } from './auth'
 import { ApiContext } from '../api'
 import { Logout } from './Logout';
 
+/**
+ * A sidebar componense a weboldalnak.
+ * @component
+ * @returns A sidebar componensét a weboldalnak.
+ */
 export function Sidebar() {
 
     const api = useContext(ApiContext);

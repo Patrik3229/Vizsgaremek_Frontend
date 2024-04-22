@@ -47,6 +47,9 @@ export default function RecipeView() {
             try {
                 const response = await fetch(`http://localhost:3000/recipes/find${id}`);
                 const data = await response.json();
+                const formattedContent = data.content.replace(/\n/g, '<br/>');
+                console.log(formattedContent);
+                data.content = formattedContent;
                 setRecipe(data);
 
                 const allergensResponse = await fetch(`http://localhost:3000/allergens/find-recipe/${id}`);
@@ -130,9 +133,7 @@ export default function RecipeView() {
                             <h5>Author: {recipe.username}</h5>
                             <h5>Preparation time: {recipe.preptime} minutes</h5>
                             <h5>Allergens: {allergenNames || 'None'}</h5>
-                            <div id="content">
-                                {recipe.content}
-                            </div>
+                            <div id="content" dangerouslySetInnerHTML={{ __html: recipe.content }}></div>
                             <div>
                                 {canEdit && (
                                     <>

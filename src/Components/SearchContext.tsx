@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useContext } from 'react';
 
 /**
  * Interfész a keresési kontextushoz, amitartalmazza a keresési szöveget és a kiválasztott allergéneket.
+ * @interface
  */
 interface SearchContextType {
     searchText: string;

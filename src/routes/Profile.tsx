@@ -73,19 +73,18 @@ export default function Profile() {
 
         setRecipesLoading(true);
 
+        
         fetch(`http://localhost:3000/recipes/find-user/${id}`)
             .then(response => response.json())
             .then(data => {
                 setRecipes(data);
-                console.log(data)
                 setRecipesLoading(false);
                 return data.map((recipe: Recipe) => {
                     const fetchUrl = `http://localhost:3000/ratings/avg-recipe/${recipe.id}`;
                     return fetch(fetchUrl)
                         .then(res => res.json())
                         .then(ratingData => {
-                            const ratingValue = ratingData[0] && ratingData[0].rating ? ratingData[0].rating.toFixed(2) + " / 5" : 'No rating'; // Ensure the rating data is present and rounded
-                            console.log('Rating for recipe', recipe.id, ':', ratingValue); // Logging each rating
+                            const ratingValue = ratingData[0] && ratingData[0].rating ? ratingData[0].rating.toFixed(2) + " / 5" : 'No rating';
                             return { id: recipe.id, rating: ratingValue };
                         })
                         .catch(error => {

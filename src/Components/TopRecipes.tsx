@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import '../css/TopRecipes.scoped.css'
 
+/**
+ * Lekéri és visszaadja az 5 legmagasabb értékeléssel rendelkező receptet.
+ * @returns Scoreboard formátumban az 5 legmagasabb értékeléssel rendelkező receptet.
+ */
 export function TopRecipes() {
 
   const [topRecipes, setTopRecipes] = useState<Recipe[]>([]);
@@ -10,13 +14,16 @@ export function TopRecipes() {
     title: string
   }
 
-  // Fetch top recipes on component mount
   useEffect(() => {
+
+    /**
+     * Lekéri az 5 legmagasabb értékeléssel rendelkező receptet.
+     */
     async function fetchTopRecipes() {
       try {
         const response = await fetch('http://localhost:3000/ratings/top-5');
         const data = await response.json();
-        setTopRecipes(data); // Assuming the response is an array of recipes
+        setTopRecipes(data);
 
       } catch (error) {
         console.error('Failed to fetch top recipes:', error);
@@ -24,7 +31,7 @@ export function TopRecipes() {
     }
 
     fetchTopRecipes();
-  }, []); // Empty dependency array means this effect will only run once after the component mounts
+  }, []);
   return <div>
     <nav id="sidebar" className="p-4">
       <div>

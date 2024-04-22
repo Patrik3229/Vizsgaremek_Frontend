@@ -1,5 +1,8 @@
 import { createContext, useState, ReactNode, useContext } from 'react';
 
+/**
+ * Interfész a keresési kontextushoz, amitartalmazza a keresési szöveget és a kiválasztott allergéneket.
+ */
 interface SearchContextType {
     searchText: string;
     setSearchText: (value: string) => void;
@@ -12,8 +15,8 @@ interface SearchContextType {
 const SearchResultContext = createContext<SearchContextType | null>(null);
 
 /**
- * 
- * @returns 
+ * Metódus a keresési kontextus eléréséhez.
+ * @returns A keresési kontextust.
  */
 export function useSearchResults() {
     const context = useContext(SearchResultContext);
@@ -23,6 +26,10 @@ export function useSearchResults() {
     return context;
 }
 
+/**
+ * Kezeli a keresési szöveget, kiválasztott allergéneket és keresési eredményeket.
+ * @param children - A komponens gyermek elemei, melyek hozzáférnek a kontextushoz.
+ */
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
     const [searchText, setSearchText] = useState<string>('');
     const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);

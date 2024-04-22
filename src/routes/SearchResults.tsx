@@ -38,11 +38,11 @@ export default function SearchResults() {
     const totalPages = Math.ceil(searchResults.length / itemsPerPage);
     const startIndex = currentPage * itemsPerPage;
     const currentRecipes = searchResults.slice(startIndex, startIndex + itemsPerPage);
-    
+
     interface AllergenIdsByRecipe {
         [key: number]: string;
     }
-    
+
     interface AllergenObject {
         name: string;
     }
@@ -103,45 +103,50 @@ export default function SearchResults() {
                 <div className="col-2" style={{ height: '100vh' }}>
                     <Sidebar />
                 </div>
-                <div className="col-8" id='search' style={{ padding: '20px 50px 50px 50px' }}>
-                    <Search />
-                    {currentRecipes.map((recipe, index) => {
-                        const formattedRating = recipe.rating ? parseFloat(recipe.rating).toFixed(2) : 'No rating';
-                        return (
-                            <div className="card w-100 mb-3" key={index} style={{ cursor: "pointer" }} onClick={() => goToRecipe(recipe.id)}>
-                                <div className="card-body">
-                                    <div className="spbw row mb-2">
-                                        <h5 className="card-title col-10">{recipe.title}</h5>
-                                        <h5 className="card-title col-2 text-end">{recipe.preptime} minutes</h5>
+                <div className="col-10" id='middle'>
+                    <div className="row">
+                        <div className="col-9" style={{ padding: '20px 50px 50px 50px' }}>
+                            <Search />
+                            {currentRecipes.map((recipe, index) => {
+                                const formattedRating = recipe.rating ? parseFloat(recipe.rating).toFixed(2) : 'No rating';
+                                return (
+                                    <div className="card w-100 mb-3" key={index} style={{ cursor: "pointer" }} onClick={() => goToRecipe(recipe.id)}>
+                                        <div className="card-body">
+                                            <div className="spbw row mb-2">
+                                                <h5 className="card-title col-10">{recipe.title}</h5>
+                                                <h5 className="card-title col-2 text-end">{recipe.preptime} minutes</h5>
+                                            </div>
+                                            <p id="recipeDescription" className="card-subtitle mb-5">{recipe.description}</p>
+                                            <div className="spbw">
+                                                <span>Allergens: {allergenIdsByRecipe[recipe.id]}</span>
+                                                <span><span className="fa fa-solid fa-star"></span> {formattedRating === 'No rating' ? 'No rating available' : `${formattedRating} / 5`}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p id="recipeDescription" className="card-subtitle mb-5">{recipe.description}</p>
-                                    <div className="spbw">
-                                        <span>Allergens: {allergenIdsByRecipe[recipe.id]}</span>
-                                        <span><span className="fa fa-solid fa-star"></span> {formattedRating === 'No rating' ? 'No rating available' : `${formattedRating} / 5`}</span>
-                                    </div>
-                                </div>
+                                );
+                            })}
+                            <div className="d-flex justify-content-center">
+                                <ul className="pagination">
+                                    <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(0); }}>First</a>
+                                    </li>
+                                    <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage - 1); }}>Previous</a>
+                                    </li>
+                                    <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage + 1); }}>Next</a>
+                                    </li>
+                                    <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
+                                        <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(totalPages - 1); }}>Last</a>
+                                    </li>
+                                </ul>
                             </div>
-                        );
-                    })}
-                    <div className="d-flex justify-content-center">
-                        <ul className="pagination">
-                            <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
-                                <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(0); }}>First</a>
-                            </li>
-                            <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
-                                <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage - 1); }}>Previous</a>
-                            </li>
-                            <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
-                                <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(currentPage + 1); }}>Next</a>
-                            </li>
-                            <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
-                                <a className="page-link" href="#" onClick={(e) => { e.preventDefault(); handleNavigation(totalPages - 1); }}>Last</a>
-                            </li>
-                        </ul>
+                        </div>
+                        <div className="col-3">
+                            <TopRecipes />
+                        </div>
+
                     </div>
-                </div>
-                <div className="col-2">
-                    <TopRecipes />
                 </div>
             </div>
         </div>

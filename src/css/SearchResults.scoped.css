@@ -7,3 +7,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+#middle {
+    overflow: auto;
+    height: 100vh;
+}

@@ -62,7 +62,7 @@ export function MainPage() {
             {registerSuccessMessage && <p className="alert alert-success">{registerSuccessMessage}</p>}
         </div>
         <h1>Welcome to our page!</h1>
-        <p>This is a website which you can upload, view, rate and even comment on recipes! Start browsing now!</p><br />
+        <p>This is a website which you can upload and view recipes! Start browsing now!</p><br />
         <h4>Authors:</h4>
         <ul style={{paddingLeft: '40px'}}>
             <li>Elekes Fanni</li>

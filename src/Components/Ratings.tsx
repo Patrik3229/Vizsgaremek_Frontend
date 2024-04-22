@@ -11,6 +11,7 @@ export function Ratings() {
 
     const [ratings, setRatings] = useState<Ratings[]>([]);
     const { id } = useParams<{ id: string }>();
+    const [ratingsExist, setRatingsExist] = useState(false);
 
     interface Ratings {
         id: number;
@@ -50,9 +51,23 @@ export function Ratings() {
         }
 
         fetchRatings();
+
+        
+
     }, [id])
 
+    useEffect(() => {
+        if(ratings.length != 0) {
+            setRatingsExist(true);
+            console.log(ratingsExist);
+        }
+    }, [ratings])
+
     return <>
+        {console.log(ratings.length)}
+        {console.log(ratingsExist)}
+        {ratingsExist == true ? (<><h3 style={{ marginBottom: '30px' }}>Reviews</h3></>) : ('')}
+        
         <div id="ratings">
             {ratings.map(rating => (
                 <div key={rating.id}>

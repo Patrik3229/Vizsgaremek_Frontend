@@ -37,8 +37,8 @@ export function TopRecipes() {
 
               <a className='noUnderline' href={`/recipe/${recipe.id}`}>
                 <div className="row">
-                  <div className="col-2"><i className="fa fa-cutlery"></i></div>
-                  <div className="col-10">{recipe.title}</div>
+                  <div className="col-1"><i className="fa fa-cutlery"></i></div>
+                  <div className="col-11">{recipe.title}</div>
                 </div>
               </a>
             </li>

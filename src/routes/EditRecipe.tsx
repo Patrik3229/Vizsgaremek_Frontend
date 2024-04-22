@@ -124,11 +124,11 @@ export default function EditRecipe() {
                                 ))}
                             </ul>
                         </div>
-                        <button className="btn btn-primary w-100 fw-bold" type="submit">Update Recipe</button>
+                        <button className="btn btn-primary w-100" type="submit">Update Recipe</button>
                     </form>
                     <p className="pt-3">
-                        <div className="text-danger text-center">
-                            <a href={`/recipe/${id}`}>Go back</a>
+                        <div className="text-center">
+                            <a href={`/recipe/${id}`} className='text-light'>Go back</a>
                         </div>
                     </p>
                     {postError && <p className="text-danger text-center">{postError}</p>}

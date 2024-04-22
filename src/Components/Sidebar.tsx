@@ -20,8 +20,8 @@ export function Sidebar() {
           <li>
             <a href="/" className="noUnderline">
               <div className="row">
-                <div className="col-2"><span className="fa fa-home mr-3" /></div>
-                <div className="col-10">Home</div>
+                <div className="col-1"><span className="fa fa-home" /></div>
+                <div className="col-11">Home</div>
               </div>
             </a>
           </li>
@@ -29,8 +29,8 @@ export function Sidebar() {
             <li>
               <a href={`/profile/${api.currentUser?.id}`} className="noUnderline">
                 <div className="row">
-                  <div className="col-2"><span className="fa fa-gear mr-3" /></div>
-                  <div className="col-10">Profile</div>
+                  <div className="col-1"><span className="fa fa-gear" /></div>
+                  <div className="col-11">Profile</div>
                 </div>
               </a>
             </li>
@@ -38,8 +38,8 @@ export function Sidebar() {
           <li>
             <a href="#" className="noUnderline">
               <div className="row">
-                <div className="col-2"><span className="fa fa-info-circle mr-3" /></div>
-                <div className="col-10">About Us</div>
+                <div className="col-1"><span className="fa fa-info-circle" /></div>
+                <div className="col-11">About Us</div>
               </div>
             </a>
           </li>

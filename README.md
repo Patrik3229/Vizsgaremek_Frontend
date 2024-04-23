@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<h1>Vizsgaremek Frontend</h1>
+<hr>
+<h6>Csapattagok</h6>
+<ul>
+    <li>Kovács Patrik
+      <p><a href="https://github.com/Patrik3229/Vizsgaremek_Frontend">Frontend</a> + <i>API</i></p>
+    </li>
+    <s><li>Fecske Márk
+      <p><a href="">Mobil</a></p>
+    </li></s>
+    <li>Elekes Fanni
+      <p><b>API</b> + <a href="https://github.com/EFanni05/Vizsgaremek_Asztali">Asztali alkalmazás</a></p>
+    </li>
+</ul><br>
+<p>Extras: <a href="https://github.com/EFanni05/Vizsgaremek_extras">database dumpj-ja és Vitest</a></p>
+<hr>
+<h5>Fecske Márk feladatai voltak még:</h5>
+<i><ul>
+  <li>Logo készítése</li>
+  <li>Mobil applikáció</li>
+</ul></i>
+<hr>

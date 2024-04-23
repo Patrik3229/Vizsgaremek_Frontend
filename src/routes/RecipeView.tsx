@@ -88,6 +88,10 @@ export default function RecipeView() {
      */
     async function deleteRecipe() {
         closeModal();
+        if (!currentUser) {
+            console.error('No user context available');
+            return;
+        }
         try {
             const deleteEndpoint = ['admin', 'manager'].includes(currentUser.role)
                 ? `http://localhost:3000/recipes/delete-admin/${id}`

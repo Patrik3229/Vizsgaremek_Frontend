@@ -21,5 +21,29 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "typedocOptions": {
+    "entryPoints": [
+      "src/Components/auth/index.tsx",
+      "src/Components/Logout.tsx",
+      "src/Components/MainPage.tsx",
+      "src/Components/Ratings.tsx",
+      "src/Components/Search.tsx",
+      "src/Components/SearchContent.tsx",
+      "src/Components/Sidebar.tsx",
+      "src/Components/TopRecipes.tsx",
+      "src/routes/CreateRecipe.tsx",
+      "src/routes/EditRecipe.tsx",
+      "src/routes/EditUser.tsx",
+      "src/routes/Login.tsx",
+      "src/routes/Profile.tsx",
+      "src/routes/RecipeView.tsx",
+      "src/routes/Register.tsx",
+      "src/routes/root.tsx",
+      "src/routes/SearchResults.tsx"
+    ],
+    "out": "./docs",
+    "excludeExternals": true,
+    "excludePrivate": true
+  }
 }

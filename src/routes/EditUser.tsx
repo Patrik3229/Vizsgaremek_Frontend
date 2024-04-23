@@ -4,6 +4,10 @@ import '../css/EditUser.scoped.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NeedsRole } from '../Components/auth';
 
+/**
+ * Felhasználói profil szerkesztésére szolgáló komponens. Ez felel a saját profil frissítéséért és más felhasználók profiljának frissítéséért is, amennyiben a bejelentkezett felhasználónak van menedzser jogosultsága.
+ * @returns A felhasználói profil szerkesztő formot, feltételesen a rangot szerkesztő dropdown menüvel.
+ */
 export default function EditUser() {
     const { id } = useParams<{ id: string }>();
     const { currentUser, getToken, getUserById } = useContext(ApiContext);
@@ -36,6 +40,10 @@ export default function EditUser() {
         }
     }, [id, currentUser, getUserById]);
 
+    /**
+     * A profil frissítését kezelő függvény.
+     * @param e Az űrlap beküldési eseménye.
+     */
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const token = getToken();
@@ -55,14 +63,14 @@ export default function EditUser() {
 
         const endpoint = currentUser!.role === 'manager' ? `/update-admin/${id}` : `/update${id}`;
 
-        console.log(updateData);  // Check what data is being sent right before the fetch call.
+        console.log(updateData);
 
         if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
             setUpdateError("Invalid email format.");
             return;
         }
 
-        console.log("Sending update with data:", updateData);  // Ensure this log prints the updated data.
+        console.log("Sending update with data:", updateData);
 
         const response = await fetch(`http://localhost:3000/users${endpoint}`, {
             method: 'PATCH',

@@ -7,7 +7,6 @@ export default function EditRecipe() {
     const { id } = useParams();
     const navigate = useNavigate();
     
-
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
@@ -34,7 +33,7 @@ export default function EditRecipe() {
                 const allergenObjects = JSON.parse(allergenText);
 
                 const allergenIds = allergenObjects.map((obj: AllergenObject) => {
-                    const label = obj.name;  // Accessing the name property directly from the parsed object
+                    const label = obj.name;
                     const found = allergens.find(allergen => allergen.name.toLowerCase() === label.toLowerCase());
                     return found ? found.id : null;
                 }).filter((id: number | null) => id !== null);
@@ -48,7 +47,7 @@ export default function EditRecipe() {
         fetchRecipeAndAllergens();
     }, [id, navigate]);
 
-    // Function to handle form submission
+    
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

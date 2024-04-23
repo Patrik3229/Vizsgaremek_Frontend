@@ -2,6 +2,10 @@ import { FormEvent, useState } from 'react';
 import '../css/Register.scoped.css'
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Regisztrációs felületet biztosító komponens.Sikeres regisztráció után az alkalmazás főoldalára navigál.
+ * @returns A regisztrációs formot.
+ */
 export default function Register() {
 
     const [email, setEmail] = useState('');
@@ -12,6 +16,10 @@ export default function Register() {
 
     const navigate = useNavigate();
 
+    /**
+     * A regisztrációs űrlap beküldését kezelő függvény. Ha minden ellenőrzés sikeres, elküldi a regisztrációs adatokat a backend részére.
+     * @param e Az esemény objektum.
+     */
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
 

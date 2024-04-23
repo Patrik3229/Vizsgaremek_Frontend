@@ -66,7 +66,7 @@ export function MainPage() {
         <h4>Authors:</h4>
         <ul style={{paddingLeft: '40px'}}>
             <li>Elekes Fanni</li>
-            <li><s>Fecske Márk</s> (Gone XD)</li>
+            <li><s>Fecske Márk</s></li>
             <li>Kovács Patrik</li>
         </ul>
     </div>

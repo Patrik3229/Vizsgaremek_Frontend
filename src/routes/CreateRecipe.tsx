@@ -4,6 +4,10 @@ import { FormEvent, useContext, useState } from 'react';
 import { ApiContext } from '../api';
 import allergens from '../allergens';
 
+/**
+ * Egy új recept létrehozásáért felelős metódus komponens.
+ * @returns A recept létrehozó formot.
+ */
 export default function CreateRecipe() {
 
     const { token } = useContext(ApiContext);
@@ -16,6 +20,11 @@ export default function CreateRecipe() {
     const [selectedAllergens, setSelectedAllergens] = useState<number[]>([]);
     const navigate = useNavigate();
 
+    /**
+     * Választható allergének kezelése.
+     * Ha az adott allergén már kiválasztott, akkor eltávolítja, ha nem, akkor hozzáadja a listához.
+     * @param id Az allergén egyedi azonosítója.
+     */
     const toggleAllergen = (id: number) => {
         const newSelectedAllergens = selectedAllergens.includes(id)
             ? selectedAllergens.filter(allergenId => allergenId !== id) // Remove id
@@ -23,6 +32,10 @@ export default function CreateRecipe() {
         setSelectedAllergens(newSelectedAllergens);
     };
 
+    /**
+     * Az recept posztolásakor meghívott függvény, amely elküldi a receptadatokat a backendnek.
+     * @param e Az esemény objektum.
+     */
     async function post(e: FormEvent) {
         e.preventDefault();
 

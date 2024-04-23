@@ -3,6 +3,10 @@ import '../css/Login.scoped.css'
 import { ApiContext } from '../api';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Bejelentkezési felületet biztosító komponens. Sikeres bejelentkezés után az alkalmazás főoldalára navigál.
+ * @returns A bejelentkezési formot.
+ */
 export default function Login() {
 
     const [email, setEmail] = useState('');
@@ -13,6 +17,10 @@ export default function Login() {
     const api = useContext(ApiContext);
     const navigate = useNavigate();
 
+    /**
+     * A bejelentkezési folyamatot kezelő függvény.
+     * @param e Az esemény objektum.
+     */
     async function login(e: FormEvent) {
         e.preventDefault();
 

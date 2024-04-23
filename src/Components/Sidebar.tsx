@@ -40,14 +40,6 @@ export function Sidebar() {
               </a>
             </li>
           </LoggedIn>
-          <li>
-            <a href="#" className="noUnderline">
-              <div className="row">
-                <div className="col-1"><span className="fa fa-info-circle" /></div>
-                <div className="col-11">About Us</div>
-              </div>
-            </a>
-          </li>
         </ul>
       </div>
       <div>

@@ -96,7 +96,7 @@ export function ApiProvider({ children }: Props) {
             return await response.json() as User;
         } catch (error) {
             console.error("Error fetching user by ID:", error);
-            throw error;  // Or handle the error as needed
+            throw error;
         }
     };
 

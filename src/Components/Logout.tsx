@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 /**
  * Kijelentkezés logikájának meghívása & Log out gomb.
+ * @component
  * @returns Log out gombot.
  */
 export function Logout(){

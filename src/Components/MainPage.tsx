@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 /**
  * Főoldal komponens & alertek.
+ * @component
  * @returns A főoldal komponenst.
  */
 export function MainPage() {

@@ -3,6 +3,7 @@ import '../css/TopRecipes.scoped.css'
 
 /**
  * Lekéri és visszaadja az 5 legmagasabb értékeléssel rendelkező receptet.
+ * @component
  * @returns Scoreboard formátumban az 5 legmagasabb értékeléssel rendelkező receptet.
  */
 export function TopRecipes() {

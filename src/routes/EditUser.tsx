@@ -123,7 +123,7 @@ export default function EditUser() {
                 </form>
                 {updateError && <p className="text-danger">{updateError}</p>}
                 <p className="pt-3 text-center">
-                    <a href={`/profile/${id}`}>Go back</a>
+                    <a href={`/profile/${id}`} className='text-light'>Go back</a>
                 </p>
             </div>
         </div>
